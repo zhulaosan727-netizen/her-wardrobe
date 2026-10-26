@@ -139,56 +139,7 @@
       </div>`;
   }
 
-  async function renderHome(root) {
-    root.innerHTML = `
-      ${renderMasthead("home")}
-      <main class="page" id="main">
-        <p class="section-kicker">今日编选</p>
-        <h2 class="section-title">今日五选</h2>
-        <p class="lede">每天五套。大图是模特试穿图；清单可点「去购买」看同款。</p>
-        <div class="today-spread" id="today-spread">
-          <div class="hero-look">
-            <div class="hero-frame" id="hero-frame">
-              <div class="hero-placeholder-mark">
-                <div class="folio">Loading</div>
-                <div class="caption">正在读取上海天气…</div>
-              </div>
-            </div>
-          </div>
-          <div class="weather-card" id="weather-card" aria-live="polite">
-            <div class="weather-details" id="weather-details"><p class="weather-status">正在读取上海天气…</p></div>
-            <a class="home-profile-link" href="#/profile">完善主体档案 <span aria-hidden="true">→</span></a>
-          </div>
-          <aside class="side-rest" id="side-rest"></aside>
-        </div>
-        <section class="today-picks" id="today-picks" aria-label="今日五选" hidden></section>
-      </main>
-      ${renderFooter()}`;
-
-    const spread = $("#today-spread", root);
-    const profileLink = $(".home-profile-link", spread);
-    WardrobeProfile.listPhotos().then((photos) => {
-      if (spread.isConnected && photos.length) {
-        profileLink.innerHTML = '主体已建档 <span aria-hidden="true">· 查看 →</span>';
-      }
-    }).catch(() => {
-      if (spread.isConnected) profileLink.textContent = "查看主体档案 →";
-    });
-
-    const weather = await WardrobeWeather.fetchShanghaiWeather(cfg.city);
-    if (!spread.isConnected) return;
-    const pick = WardrobeSelect.selectToday(cfg.looks, weather);
-    const picks = pick.picks || [];
-    if (!picks.length) {
-      $("#hero-frame", spread).innerHTML = `
-        <div class="hero-placeholder-mark">
-          <div class="folio">Empty</div>
-          <div class="caption">衣橱里还没有造型</div>
-        </div>`;
-      $("#weather-details", spread).innerHTML = `<p class="weather-status">${weather.statusLabel}</p>`;
-      return;
-    }
-
+  function weatherFlagsHtml(weather) {
     const flags = [];
     flags.push(`<span class="flag">体感 ${weather.apparent}°C</span>`);
     flags.push(`<span class="flag">气温 ${weather.temp}°C</span>`);
@@ -199,16 +150,36 @@
     }
     if (weather.wind >= 25) flags.push(`<span class="flag is-alert">风 ${weather.wind} km/h</span>`);
     else flags.push(`<span class="flag">风 ${weather.wind} km/h</span>`);
+    return flags.join("");
+  }
 
+  function paintWeatherCard(spread, weather) {
     $("#weather-details", spread).innerHTML = `
         <p class="weather-city">${cfg.city.name}</p>
         <p class="weather-temp">${weather.apparent}<span>°C</span></p>
         <p class="weather-cond">${weather.condition}</p>
-        <div class="weather-flags">${flags.join("")}</div>
+        <div class="weather-flags">${weatherFlagsHtml(weather)}</div>
         <p class="weather-status">${weather.statusLabel}</p>`;
+  }
 
-    let active = 0;
+  function showTodayPicks(root, spread, weather) {
+    const pick = WardrobeSelect.selectToday(cfg.looks, weather);
+    const picks = pick.picks || [];
     const picksRoot = $("#today-picks", root);
+    const gate = $("#today-gate", root);
+
+    if (!picks.length) {
+      $("#hero-frame", spread).innerHTML = `
+        <div class="hero-placeholder-mark">
+          <div class="folio">Empty</div>
+          <div class="caption">衣橱里还没有造型</div>
+        </div>`;
+      if (gate) gate.hidden = true;
+      picksRoot.hidden = true;
+      return;
+    }
+
+    if (gate) gate.hidden = true;
     picksRoot.hidden = false;
     picksRoot.innerHTML = `
       <p class="section-kicker">按天气排序</p>
@@ -224,7 +195,7 @@
               <span class="today-pick-rank">${String(i + 1).padStart(2, "0")}</span>
               <span class="today-pick-body">
                 <span class="today-pick-name">${look.name}</span>
-                <span class="today-pick-meta">${SEASON_CN[look.season]} · ${mini}</span>
+                <span class="today-pick-meta">${SEASON_CN[look.season] || ""} · ${mini}</span>
               </span>
             </button>`;
           })
@@ -232,7 +203,6 @@
       </div>`;
 
     function show(index) {
-      active = index;
       const look = picks[index];
       paintTodayLook(spread, look, pick.why);
       picksRoot.querySelectorAll(".today-pick").forEach((btn, i) => {
@@ -247,8 +217,61 @@
       if (!btn || !picksRoot.contains(btn)) return;
       show(Number(btn.dataset.index) || 0);
     };
-
     show(0);
+  }
+
+  async function renderHome(root) {
+    root.innerHTML = `
+      ${renderMasthead("home")}
+      <main class="page" id="main">
+        <p class="section-kicker">今日编选</p>
+        <h2 class="section-title">今日五选</h2>
+        <p class="lede">打开页面会自动读上海天气。点「获取今日穿搭」按天气选出五套；试穿图由助手每日更新，清单可点「去购买」。</p>
+        <div class="today-spread" id="today-spread">
+          <div class="hero-look">
+            <div class="hero-frame" id="hero-frame">
+              <div class="hero-placeholder-mark">
+                <div class="folio">Today</div>
+                <div class="caption">天气就绪后，点下方按钮获取今日穿搭</div>
+              </div>
+            </div>
+          </div>
+          <div class="weather-card" id="weather-card" aria-live="polite">
+            <div class="weather-details" id="weather-details"><p class="weather-status">正在读取上海天气…</p></div>
+            <a class="home-profile-link" href="#/profile">完善主体档案 <span aria-hidden="true">→</span></a>
+          </div>
+          <aside class="side-rest" id="side-rest">
+            <div class="today-gate" id="today-gate">
+              <button type="button" class="fetch-today-btn" id="fetch-today-btn" disabled>正在读天气…</button>
+              <p class="today-gate-hint">先读今日天气，再按体感选出五套候场。</p>
+            </div>
+          </aside>
+        </div>
+        <section class="today-picks" id="today-picks" aria-label="今日五选" hidden></section>
+      </main>
+      ${renderFooter()}`;
+
+    const spread = $("#today-spread", root);
+    const profileLink = $(".home-profile-link", spread);
+    const fetchBtn = $("#fetch-today-btn", root);
+    WardrobeProfile.listPhotos().then((photos) => {
+      if (spread.isConnected && photos.length) {
+        profileLink.innerHTML = '主体已建档 <span aria-hidden="true">· 查看 →</span>';
+      }
+    }).catch(() => {
+      if (spread.isConnected) profileLink.textContent = "查看主体档案 →";
+    });
+
+    const weather = await WardrobeWeather.fetchShanghaiWeather(cfg.city);
+    if (!spread.isConnected) return;
+    paintWeatherCard(spread, weather);
+    fetchBtn.disabled = false;
+    fetchBtn.textContent = "获取今日穿搭";
+    fetchBtn.onclick = () => {
+      fetchBtn.disabled = true;
+      fetchBtn.textContent = "编选中…";
+      showTodayPicks(root, spread, weather);
+    };
   }
 
   function renderSeason(root, season) {

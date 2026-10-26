@@ -175,7 +175,45 @@ button {
   padding-top: 0.5rem;
 }
 .today-spread .hero-look { grid-area: hero; }
-.today-spread .weather-card { grid-area: weather; }
+.today-spread 
+/* —— Today fetch gate —— */
+.today-gate {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 0.25rem 0;
+}
+.fetch-today-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.85rem 1.35rem;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  transition: background 0.2s var(--ease-paper), color 0.2s var(--ease-paper), opacity 0.2s;
+}
+.fetch-today-btn:hover:not(:disabled) {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.fetch-today-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.today-gate-hint {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--ink-mute);
+  line-height: 1.5;
+}
+
+.weather-card { grid-area: weather; }
 .today-spread .side-rest { grid-area: rest; display: flex; flex-direction: column; gap: 1.75rem; }
 @media (max-width: 860px) {
   .today-spread {
