@@ -32,7 +32,7 @@ python3 -m http.server 8765 --directory "$preview_dir"
 
 ## 页面
 
-- `#/` 今日（上海天气 + 一套推荐 + 理由 + 天气替换）
+- `#/` 今日（上海天气 + 五套推荐，可点选查看清单）
 - `#/profile` 主体档案（身高、体重、穿衣偏好与 1～6 张本人主体照片）
 - `#/summer` `#/fall` `#/winter` `#/spring` 各 7 套
 - `#/gym` `#/lounge` 各 1 套

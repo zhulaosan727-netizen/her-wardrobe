@@ -631,3 +631,63 @@ button {
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* —— Today five picks —— */
+.today-picks {
+  max-width: var(--max);
+  margin: 2.5rem auto 0;
+  padding: 0 1.5rem 1rem;
+}
+.today-picks-title {
+  font-family: var(--serif-display);
+  font-size: 1.55rem;
+  margin: 0.15rem 0 1.1rem;
+  font-weight: 400;
+}
+.today-picks-grid {
+  display: grid;
+  gap: 0.65rem;
+}
+.today-pick {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.9rem;
+  align-items: start;
+  width: 100%;
+  text-align: left;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  transition: border-color 220ms var(--ease-paper), background 220ms var(--ease-paper);
+}
+.today-pick:hover { border-color: rgba(26, 22, 20, 0.28); }
+.today-pick.is-active {
+  border-color: var(--ink);
+  background: var(--paper-2);
+}
+.today-pick-rank {
+  font-family: var(--serif-lat);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  padding-top: 0.2rem;
+}
+.today-pick-body { display: grid; gap: 0.25rem; min-width: 0; }
+.today-pick-name {
+  font-family: var(--serif-display);
+  font-size: 1.15rem;
+  line-height: 1.3;
+}
+.today-pick-meta {
+  font-size: 0.8rem;
+  color: var(--ink-mute);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@media (min-width: 720px) {
+  .today-picks-grid { grid-template-columns: 1fr 1fr; }
+  .today-pick:first-child { grid-column: 1 / -1; }
+}
+

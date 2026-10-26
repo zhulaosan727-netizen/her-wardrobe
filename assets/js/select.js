@@ -1,4 +1,4 @@
-/* Client-side look selection — never invent outside the 30 */
+/* Client-side look selection — only from configured looks */
 (function (global) {
   const SEASON_LABEL = {
     summer: "夏",
@@ -8,6 +8,7 @@
     gym: "健身",
     lounge: "居家"
   };
+  const DAILY_COUNT = 5;
 
   function calendarSeason(date) {
     const m = date.getMonth() + 1;
@@ -23,7 +24,6 @@
     if (t >= 15 && t <= 19) {
       const cal = calendarSeason(date);
       if (cal === "spring" || cal === "fall") return cal;
-      // closer season by month
       const m = date.getMonth() + 1;
       if (m === 12 || m <= 2) return m === 12 ? "fall" : "spring";
       return cal === "summer" ? "summer" : cal;
@@ -58,63 +58,47 @@
     return score;
   }
 
-  function pickFromPool(looks, season, weather) {
-    const pool = looks.filter((l) => l.season === season);
-    if (!pool.length) return null;
-    const ranked = pool
-      .map((l) => ({ look: l, score: scoreLook(l, weather, season) }))
-      .sort((a, b) => b.score - a.score || a.look.id.localeCompare(b.look.id));
-    return ranked[0].look;
-  }
-
-  function pickSwap(looks, primary, weather, preferred) {
-    const needRain = weather.raining || weather.precip >= 1;
-    const pool = looks.filter((l) => l.season === preferred && l.id !== primary.id);
-    if (!pool.length) return null;
-
-    if (needRain) {
-      const rain = pool.filter((l) => (l.tags || []).includes("rain") || (l.tags || []).includes("jacket"));
-      if (rain.length) return rain[0];
-    }
-    // cooler swap: prefer more layers
-    const layered = pool
-      .filter((l) => (l.tags || []).includes("layer") || (l.tags || []).includes("jacket"))
-      .sort((a, b) => scoreLook(b, { ...weather, apparent: weather.apparent - 5 }, preferred) - scoreLook(a, { ...weather, apparent: weather.apparent - 5 }, preferred));
-    return layered[0] || pool[0];
-  }
-
-  function whyText(look, weather, preferred) {
+  function whyText(picks, weather, preferred) {
     const bits = [];
-    bits.push(`体感约 ${weather.apparent}°C，归入「${SEASON_LABEL[preferred]}」池。`);
+    bits.push(`体感约 ${weather.apparent}°C，归入「${SEASON_LABEL[preferred]}」优先。`);
     if (weather.raining || weather.precip >= 1) {
-      bits.push("有降水，优先外套与闭口鞋。");
+      bits.push("有降水，外套与闭口鞋靠前。");
     } else {
-      bits.push("干燥晴好，不必加雨具。");
+      bits.push("干燥晴好，雨具靠后。");
     }
     if (weather.wind >= 25) bits.push(`风速 ${weather.wind} km/h，保留叠穿。`);
-    bits.push(`入选：${look.name}。`);
+    bits.push(`今日排出五套，首选「${picks[0].name}」。`);
     return bits.join(" ");
-  }
-
-  function swapReason(weather) {
-    if (weather.raining || weather.precip >= 1) return "若雨势加重，改穿这一套（外套 + 闭口鞋）。";
-    return "若降温约 5°C 或风变大，改穿这一套（更多中层）。";
   }
 
   function selectToday(looks, weather, date) {
     date = date || new Date();
     const preferred = poolSeason(weather, date);
-    const primary = pickFromPool(looks, preferred, weather);
-    const swap = pickSwap(looks, primary, weather, preferred);
+    const ranked = (looks || [])
+      .map((look) => ({ look, score: scoreLook(look, weather, preferred) }))
+      .sort((a, b) => b.score - a.score || a.look.id.localeCompare(b.look.id));
+
+    const picks = ranked.slice(0, DAILY_COUNT).map((row) => row.look);
+    if (!picks.length) {
+      return {
+        preferred,
+        picks: [],
+        primary: null,
+        why: "衣橱里还没有造型可推荐。",
+        seasonLabel: SEASON_LABEL[preferred],
+        count: DAILY_COUNT
+      };
+    }
+
     return {
       preferred,
-      primary,
-      swap,
-      why: whyText(primary, weather, preferred),
-      swapWhy: swapReason(weather),
-      seasonLabel: SEASON_LABEL[preferred]
+      picks,
+      primary: picks[0],
+      why: whyText(picks, weather, preferred),
+      seasonLabel: SEASON_LABEL[preferred],
+      count: DAILY_COUNT
     };
   }
 
-  global.WardrobeSelect = { selectToday, calendarSeason, poolSeason, SEASON_LABEL };
+  global.WardrobeSelect = { selectToday, calendarSeason, poolSeason, SEASON_LABEL, DAILY_COUNT };
 })(window);

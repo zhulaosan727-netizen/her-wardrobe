@@ -72,13 +72,46 @@
       </footer>`;
   }
 
+  function lookThumbHtml(look, folio) {
+    return `
+      <div class="hero-placeholder-mark">
+        <div class="folio">${folio || look.id.toUpperCase()}</div>
+        <div class="caption">试穿图位置<br/><span style="font-size:0.85em;opacity:0.75">稍后可替换为实拍</span></div>
+      </div>
+      <div class="hero-meta">
+        <h3 class="hero-name">${look.name}</h3>
+        <div class="hero-season">${SEASON_CN[look.season]}</div>
+      </div>`;
+  }
+
+  function paintTodayLook(spread, look, why) {
+    const lines = piecesLines(look);
+    $("#hero-frame", spread).innerHTML = lookThumbHtml(look);
+    $("#side-rest", spread).innerHTML = `
+      <div class="why-block">
+        <h3>为何入选</h3>
+        <p>${why}</p>
+      </div>
+      <div class="checklist">
+        <h3>穿着清单</h3>
+        <ul>
+          ${lines
+            .map(
+              ([role, name]) =>
+                `<li><span class="role">${role || "·"}</span><span>${name}</span></li>`
+            )
+            .join("")}
+        </ul>
+      </div>`;
+  }
+
   async function renderHome(root) {
     root.innerHTML = `
       ${renderMasthead("home")}
       <main class="page" id="main">
         <p class="section-kicker">今日编选</p>
-        <h2 class="section-title">今日穿什么</h2>
-        <p class="lede">打开这一页，只为定下今天的一套。天气参与决定；造型不离开三十套。</p>
+        <h2 class="section-title">今日五选</h2>
+        <p class="lede">每天只看五套。天气帮你排序；点其中一套看清单，再决定出门穿哪套。</p>
         <div class="today-spread" id="today-spread">
           <div class="hero-look">
             <div class="hero-frame" id="hero-frame">
@@ -94,6 +127,7 @@
           </div>
           <aside class="side-rest" id="side-rest"></aside>
         </div>
+        <section class="today-picks" id="today-picks" aria-label="今日五选" hidden></section>
       </main>
       ${renderFooter()}`;
 
@@ -108,21 +142,18 @@
     });
 
     const weather = await WardrobeWeather.fetchShanghaiWeather(cfg.city);
-    // 天气请求返回时，用户可能已经切到档案或季节页。
     if (!spread.isConnected) return;
     const pick = WardrobeSelect.selectToday(cfg.looks, weather);
-    const look = pick.primary;
-    const lines = piecesLines(look);
-
-    $("#hero-frame", spread).innerHTML = `
-      <div class="hero-placeholder-mark">
-        <div class="folio">${look.id.toUpperCase()}</div>
-        <div class="caption">试穿图位置<br/><span style="font-size:0.85em;opacity:0.75">稍后可替换为实拍</span></div>
-      </div>
-      <div class="hero-meta">
-        <h3 class="hero-name">${look.name}</h3>
-        <div class="hero-season">${SEASON_CN[look.season]}</div>
-      </div>`;
+    const picks = pick.picks || [];
+    if (!picks.length) {
+      $("#hero-frame", spread).innerHTML = `
+        <div class="hero-placeholder-mark">
+          <div class="folio">Empty</div>
+          <div class="caption">衣橱里还没有造型</div>
+        </div>`;
+      $("#weather-details", spread).innerHTML = `<p class="weather-status">${weather.statusLabel}</p>`;
+      return;
+    }
 
     const flags = [];
     flags.push(`<span class="flag">体感 ${weather.apparent}°C</span>`);
@@ -135,15 +166,6 @@
     if (weather.wind >= 25) flags.push(`<span class="flag is-alert">风 ${weather.wind} km/h</span>`);
     else flags.push(`<span class="flag">风 ${weather.wind} km/h</span>`);
 
-    const swapHtml = pick.swap
-      ? `<div class="swap-block">
-          <h3>天气替换</h3>
-          <div class="swap-look">${pick.swap.name}</div>
-          <p>${pick.swapWhy}</p>
-          <a class="swap-link" href="#/${pick.swap.season}">查看「${SEASON_CN[pick.swap.season]}」池 →</a>
-        </div>`
-      : "";
-
     $("#weather-details", spread).innerHTML = `
         <p class="weather-city">${cfg.city.name}</p>
         <p class="weather-temp">${weather.apparent}<span>°C</span></p>
@@ -151,23 +173,48 @@
         <div class="weather-flags">${flags.join("")}</div>
         <p class="weather-status">${weather.statusLabel}</p>`;
 
-    $("#side-rest", spread).innerHTML = `
-      <div class="why-block">
-        <h3>为何入选</h3>
-        <p>${pick.why}</p>
-      </div>
-      <div class="checklist">
-        <h3>穿着清单</h3>
-        <ul>
-          ${lines
-            .map(
-              ([role, name]) =>
-                `<li><span class="role">${role || "·"}</span><span>${name}</span></li>`
-            )
-            .join("")}
-        </ul>
-      </div>
-      ${swapHtml}`;
+    let active = 0;
+    const picksRoot = $("#today-picks", root);
+    picksRoot.hidden = false;
+    picksRoot.innerHTML = `
+      <p class="section-kicker">按天气排序</p>
+      <h3 class="today-picks-title">五套候场</h3>
+      <div class="today-picks-grid" role="list">
+        ${picks
+          .map((look, i) => {
+            const mini = piecesLines(look)
+              .map(([, n]) => n)
+              .join(" · ");
+            return `
+            <button type="button" class="today-pick${i === 0 ? " is-active" : ""}" role="listitem" data-index="${i}" aria-pressed="${i === 0 ? "true" : "false"}">
+              <span class="today-pick-rank">${String(i + 1).padStart(2, "0")}</span>
+              <span class="today-pick-body">
+                <span class="today-pick-name">${look.name}</span>
+                <span class="today-pick-meta">${SEASON_CN[look.season]} · ${mini}</span>
+              </span>
+            </button>`;
+          })
+          .join("")}
+      </div>`;
+
+    function show(index) {
+      active = index;
+      const look = picks[index];
+      paintTodayLook(spread, look, pick.why);
+      picksRoot.querySelectorAll(".today-pick").forEach((btn, i) => {
+        const on = i === index;
+        btn.classList.toggle("is-active", on);
+        btn.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+    }
+
+    picksRoot.onclick = (event) => {
+      const btn = event.target.closest(".today-pick");
+      if (!btn || !picksRoot.contains(btn)) return;
+      show(Number(btn.dataset.index) || 0);
+    };
+
+    show(0);
   }
 
   function renderSeason(root, season) {
@@ -252,7 +299,7 @@
       <main class="page">
         <p class="section-kicker">单品档案</p>
         <h2 class="section-title">单品库</h2>
-        <p class="lede">三十套拆开后的全部单品。「要买」是占位，可在配置里改成已有。</p>
+        <p class="lede">衣橱造型拆开后的全部单品。「要买」是占位，可在配置里改成已有。</p>
         <table class="piece-table">
           <thead><tr><th>单品</th><th>状态</th><th>出现在</th></tr></thead>
           <tbody>
@@ -279,7 +326,7 @@
       <main class="page">
         <p class="section-kicker">删减清单</p>
         <h2 class="section-title">清理清单</h2>
-        <p class="lede">不在三十套体系里的衣服。卖掉、捐赠或丢弃——腾出空间给真正上场的。</p>
+        <p class="lede">不在日常衣橱体系里的衣服。卖掉、捐赠或丢弃——腾出空间给真正上场的。</p>
         <table class="purge-table">
           <thead><tr><th>单品</th><th>建议</th><th>备注</th></tr></thead>
           <tbody>
@@ -312,7 +359,7 @@
         <div class="note-box">
           <p>${cfg.rotationNote || ""}</p>
         </div>
-        <p class="lede" style="margin-top:2rem">四季各七套，加上健身与居家，一共三十。首页只推一套；其余在当季页里待命。</p>
+        <p class="lede" style="margin-top:2rem">衣橱里可以有更多造型待命；首页每天只按天气排出五套，点开看清单再出门。</p>
       </main>
       ${renderFooter()}`;
   }
