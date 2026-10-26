@@ -32,13 +32,9 @@ python3 -m http.server 8765 --directory "$preview_dir"
 
 ## 页面
 
-- `#/` 今日（上海天气 + 五套推荐；试穿大图 + 清单「去淘宝」）
-- `#/profile` 主体档案（身高、体重、穿衣偏好与 1～6 张本人主体照片）
-- `#/summer` `#/fall` `#/winter` `#/spring` 各 7 套
-- `#/gym` `#/lounge` 各 1 套
-- `#/pieces` 单品库（已有 / 要买）
-- `#/purge` 清理清单
-- `#/rotation` 轮换说明
+- `#/` 今日（上海天气 + 五套推荐；试穿大图 + 清单「去购买」）
+- `#/profile` 主体档案（本机身高体重与参考照）
+
 
 ## 天气
 

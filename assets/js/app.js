@@ -8,16 +8,7 @@
   const SEASON_CN = { summer: "夏", fall: "秋", winter: "冬", spring: "春", gym: "健身", lounge: "居家" };
   const ROUTES = [
     { hash: "#/", id: "home", label: "今日" },
-    { hash: "#/profile", id: "profile", label: "档案" },
-    { hash: "#/summer", id: "summer", label: "夏" },
-    { hash: "#/fall", id: "fall", label: "秋" },
-    { hash: "#/winter", id: "winter", label: "冬" },
-    { hash: "#/spring", id: "spring", label: "春" },
-    { hash: "#/gym", id: "gym", label: "健身" },
-    { hash: "#/lounge", id: "lounge", label: "居家" },
-    { hash: "#/pieces", id: "pieces", label: "单品" },
-    { hash: "#/purge", id: "purge", label: "清理" },
-    { hash: "#/rotation", id: "rotation", label: "轮换" }
+    { hash: "#/profile", id: "profile", label: "档案" }
   ];
 
   function $(sel, root) { return (root || document).querySelector(sel); }
@@ -416,20 +407,11 @@
     const root = $("#app");
     document.title = cfg.siteName;
 
-    if (path === "/" || path === "") return renderHome(root);
     if (path === "/profile") {
       disposePage = renderProfile(root);
       return;
     }
-    if (path === "/summer") return renderSeason(root, "summer");
-    if (path === "/fall") return renderSeason(root, "fall");
-    if (path === "/winter") return renderSeason(root, "winter");
-    if (path === "/spring") return renderSeason(root, "spring");
-    if (path === "/gym") return renderSeason(root, "gym");
-    if (path === "/lounge") return renderSeason(root, "lounge");
-    if (path === "/pieces") return renderPieces(root);
-    if (path === "/purge") return renderPurge(root);
-    if (path === "/rotation") return renderRotation(root);
+    if (path === "/" || path === "") return renderHome(root);
     location.hash = "#/";
   }
 
