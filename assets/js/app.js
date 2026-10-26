@@ -8,6 +8,7 @@
   const SEASON_CN = { summer: "夏", fall: "秋", winter: "冬", spring: "春", gym: "健身", lounge: "居家" };
   const ROUTES = [
     { hash: "#/", id: "home", label: "今日" },
+    { hash: "#/profile", id: "profile", label: "档案" },
     { hash: "#/summer", id: "summer", label: "夏" },
     { hash: "#/fall", id: "fall", label: "秋" },
     { hash: "#/winter", id: "winter", label: "冬" },
@@ -87,18 +88,33 @@
               </div>
             </div>
           </div>
-          <div class="weather-card" id="weather-card" aria-live="polite"></div>
+          <div class="weather-card" id="weather-card" aria-live="polite">
+            <div class="weather-details" id="weather-details"><p class="weather-status">正在读取上海天气…</p></div>
+            <a class="home-profile-link" href="#/profile">完善主体档案 <span aria-hidden="true">→</span></a>
+          </div>
           <aside class="side-rest" id="side-rest"></aside>
         </div>
       </main>
       ${renderFooter()}`;
 
+    const spread = $("#today-spread", root);
+    const profileLink = $(".home-profile-link", spread);
+    WardrobeProfile.listPhotos().then((photos) => {
+      if (spread.isConnected && photos.length) {
+        profileLink.innerHTML = '主体已建档 <span aria-hidden="true">· 查看 →</span>';
+      }
+    }).catch(() => {
+      if (spread.isConnected) profileLink.textContent = "查看主体档案 →";
+    });
+
     const weather = await WardrobeWeather.fetchShanghaiWeather(cfg.city);
+    // 天气请求返回时，用户可能已经切到档案或季节页。
+    if (!spread.isConnected) return;
     const pick = WardrobeSelect.selectToday(cfg.looks, weather);
     const look = pick.primary;
     const lines = piecesLines(look);
 
-    $("#hero-frame").innerHTML = `
+    $("#hero-frame", spread).innerHTML = `
       <div class="hero-placeholder-mark">
         <div class="folio">${look.id.toUpperCase()}</div>
         <div class="caption">试穿图位置<br/><span style="font-size:0.85em;opacity:0.75">稍后可替换为实拍</span></div>
@@ -128,14 +144,14 @@
         </div>`
       : "";
 
-    $("#weather-card").innerHTML = `
+    $("#weather-details", spread).innerHTML = `
         <p class="weather-city">${cfg.city.name}</p>
         <p class="weather-temp">${weather.apparent}<span>°C</span></p>
         <p class="weather-cond">${weather.condition}</p>
         <div class="weather-flags">${flags.join("")}</div>
         <p class="weather-status">${weather.statusLabel}</p>`;
 
-    $("#side-rest").innerHTML = `
+    $("#side-rest", spread).innerHTML = `
       <div class="why-block">
         <h3>为何入选</h3>
         <p>${pick.why}</p>
@@ -188,6 +204,19 @@
         </div>
       </main>
       ${renderFooter()}`;
+  }
+
+  function renderProfile(root) {
+    root.innerHTML = `
+      ${renderMasthead("profile")}
+      <main class="page">
+        <p class="section-kicker">私人参照</p>
+        <h2 class="section-title">主体档案</h2>
+        <p class="lede">记录自己的比例，留下几张自然的身影。为之后的试穿，准备一份只属于自己的参考。</p>
+        <div id="profile-page"></div>
+      </main>
+      ${renderFooter()}`;
+    return WardrobeProfilePage.mount($("#profile-page", root));
   }
 
   function allPieces() {
@@ -288,13 +317,20 @@
       ${renderFooter()}`;
   }
 
+  let disposePage;
+
   async function route() {
+    if (disposePage) { disposePage(); disposePage = null; }
     const raw = (location.hash || "#/").replace(/^#/, "") || "/";
     const path = raw.split("?")[0];
     const root = $("#app");
     document.title = cfg.siteName;
 
     if (path === "/" || path === "") return renderHome(root);
+    if (path === "/profile") {
+      disposePage = renderProfile(root);
+      return;
+    }
     if (path === "/summer") return renderSeason(root, "summer");
     if (path === "/fall") return renderSeason(root, "fall");
     if (path === "/winter") return renderSeason(root, "winter");
