@@ -29,7 +29,27 @@ window.WARDROBE_CONFIG = {
     "白色牛津衬衫": "https://search.jd.com/Search?keyword=%E7%99%BD%E8%89%B2%E7%89%9B%E6%B4%A5%E8%A1%AC%E8%A1%AB%20%E5%A5%B3&enc=utf-8",
     "黑色西裤": "https://search.jd.com/Search?keyword=%E9%BB%91%E8%89%B2%E8%A5%BF%E8%A3%A4%20%E5%A5%B3&enc=utf-8",
     "黑色皮鞋": "https://search.jd.com/Search?keyword=%E9%BB%91%E8%89%B2%E7%9A%AE%E9%9E%8B%20%E5%A5%B3&enc=utf-8",
-    "细条纹西装外套": "https://search.jd.com/Search?keyword=%E7%BB%86%E6%9D%A1%E7%BA%B9%E8%A5%BF%E8%A3%85%E5%A4%96%E5%A5%97%20%E5%A5%B3&enc=utf-8"
+    "细条纹西装外套": "https://search.jd.com/Search?keyword=%E7%BB%86%E6%9D%A1%E7%BA%B9%E8%A5%BF%E8%A3%85%E5%A4%96%E5%A5%97%20%E5%A5%B3&enc=utf-8",
+    "白色亚麻短袖衬衫": "https://search.jd.com/Search?keyword=%E7%99%BD%E8%89%B2%E4%BA%9A%E9%BA%BB%E7%9F%AD%E8%A2%96%E8%A1%AC%E8%A1%AB%20%E5%A5%B3&enc=utf-8",
+    "米色阔腿西裤": "https://search.jd.com/Search?keyword=%E7%B1%B3%E8%89%B2%E9%98%94%E8%85%BF%E8%A5%BF%E8%A3%A4%20%E5%A5%B3&enc=utf-8",
+    "裸色平底凉鞋": "https://search.jd.com/Search?keyword=%E8%A3%B8%E8%89%B2%E5%B9%B3%E5%BA%95%E5%87%89%E9%9E%8B%20%E5%A5%B3&enc=utf-8",
+    "细金手链": "https://search.jd.com/Search?keyword=%E7%BB%86%E9%87%91%E6%89%8B%E9%93%BE%20%E5%A5%B3&enc=utf-8",
+    "海军蓝白条纹 T 恤": "https://search.jd.com/Search?keyword=%E6%B5%B7%E5%86%9B%E8%93%9D%E7%99%BD%E6%9D%A1%E7%BA%B9%20T%20%E6%81%A4%20%E5%A5%B3&enc=utf-8",
+    "白色直筒牛仔裤": "https://search.jd.com/Search?keyword=%E7%99%BD%E8%89%B2%E7%9B%B4%E7%AD%92%E7%89%9B%E4%BB%94%E8%A3%A4%20%E5%A5%B3&enc=utf-8",
+    "白色皮质运动鞋": "https://search.jd.com/Search?keyword=%E7%99%BD%E8%89%B2%E7%9A%AE%E8%B4%A8%E8%BF%90%E5%8A%A8%E9%9E%8B%20%E5%A5%B3&enc=utf-8",
+    "草编托特包": "https://search.jd.com/Search?keyword=%E8%8D%89%E7%BC%96%E6%89%98%E7%89%B9%E5%8C%85%20%E5%A5%B3&enc=utf-8",
+    "香槟丝质吊带裙": "https://search.jd.com/Search?keyword=%E9%A6%99%E6%A7%9F%E4%B8%9D%E8%B4%A8%E5%90%8A%E5%B8%A6%E8%A3%99%20%E5%A5%B3&enc=utf-8",
+    "细带裸色凉鞋": "https://search.jd.com/Search?keyword=%E7%BB%86%E5%B8%A6%E8%A3%B8%E8%89%B2%E5%87%89%E9%9E%8B%20%E5%A5%B3&enc=utf-8",
+    "薄纱披肩": "https://search.jd.com/Search?keyword=%E8%96%84%E7%BA%B1%E6%8A%AB%E8%82%A9%20%E5%A5%B3&enc=utf-8",
+    "小耳钉": "https://search.jd.com/Search?keyword=%E5%B0%8F%E8%80%B3%E9%92%89%20%E5%A5%B3&enc=utf-8",
+    "浅灰短袖针织": "https://search.jd.com/Search?keyword=%E6%B5%85%E7%81%B0%E7%9F%AD%E8%A2%96%E9%92%88%E7%BB%87%20%E5%A5%B3&enc=utf-8",
+    "卡其棉短裤": "https://search.jd.com/Search?keyword=%E5%8D%A1%E5%85%B6%E6%A3%89%E7%9F%AD%E8%A3%A4%20%E5%A5%B3&enc=utf-8",
+    "白色帆布鞋": "https://search.jd.com/Search?keyword=%E7%99%BD%E8%89%B2%E5%B8%86%E5%B8%83%E9%9E%8B%20%E5%A5%B3&enc=utf-8",
+    "棒球帽": "https://search.jd.com/Search?keyword=%E6%A3%92%E7%90%83%E5%B8%BD%20%E5%A5%B3&enc=utf-8",
+    "宽松白衬衫（袖口挽起）": "https://search.jd.com/Search?keyword=%E5%AE%BD%E6%9D%BE%E7%99%BD%E8%A1%AC%E8%A1%AB%EF%BC%88%E8%A2%96%E5%8F%A3%E6%8C%BD%E8%B5%B7%EF%BC%89%20%E5%A5%B3&enc=utf-8",
+    "中长牛仔裙": "https://search.jd.com/Search?keyword=%E4%B8%AD%E9%95%BF%E7%89%9B%E4%BB%94%E8%A3%99%20%E5%A5%B3&enc=utf-8",
+    "棕色皮质凉鞋": "https://search.jd.com/Search?keyword=%E6%A3%95%E8%89%B2%E7%9A%AE%E8%B4%A8%E5%87%89%E9%9E%8B%20%E5%A5%B3&enc=utf-8",
+    "细腰带": "https://search.jd.com/Search?keyword=%E7%BB%86%E8%85%B0%E5%B8%A6%20%E5%A5%B3&enc=utf-8"
   },
   /* 试穿图：主体+衣服的合成图放进 assets/img/looks/，image 填相对路径；有图则今日大图展示 */
   looks: [
@@ -39,7 +59,7 @@ window.WARDROBE_CONFIG = {
       pieces: { top: "白色亚麻短袖衬衫", bottom: "米色阔腿西裤", shoes: "裸色平底凉鞋", extras: ["细金手链"] },
       owned: ["白色亚麻短袖衬衫", "米色阔腿西裤", "裸色平底凉鞋"],
       buy: ["细金手链"],
-      tags: ["dry", "light"], image: null,
+      tags: ["dry", "light"], image: "assets/img/looks/su01.jpg",
       blurb: "透气、利落，适合晴热的工作日。"
     },
     {
@@ -47,7 +67,7 @@ window.WARDROBE_CONFIG = {
       pieces: { top: "海军蓝白条纹 T 恤", bottom: "白色直筒牛仔裤", shoes: "白色皮质运动鞋", extras: ["草编托特包"] },
       owned: ["海军蓝白条纹 T 恤", "白色直筒牛仔裤", "白色皮质运动鞋"],
       buy: ["草编托特包"],
-      tags: ["dry", "casual"], image: null,
+      tags: ["dry", "casual"], image: "assets/img/looks/su02.jpg",
       blurb: "周末散步与咖啡馆，轻松但不随便。"
     },
     {
@@ -55,7 +75,7 @@ window.WARDROBE_CONFIG = {
       pieces: { onePiece: "香槟丝质吊带裙", shoes: "细带裸色凉鞋", extras: ["薄纱披肩", "小耳钉"] },
       owned: ["香槟丝质吊带裙", "细带裸色凉鞋", "小耳钉"],
       buy: ["薄纱披肩"],
-      tags: ["dry", "evening"], image: null,
+      tags: ["dry", "evening"], image: "assets/img/looks/su03.jpg",
       blurb: "晚间聚餐与轻仪式感场合。"
     },
     {
@@ -63,7 +83,7 @@ window.WARDROBE_CONFIG = {
       pieces: { top: "浅灰短袖针织", bottom: "卡其棉短裤", shoes: "白色帆布鞋", extras: ["棒球帽"] },
       owned: ["浅灰短袖针织", "卡其棉短裤", "白色帆布鞋"],
       buy: [],
-      tags: ["dry", "weekend"], image: null,
+      tags: ["dry", "weekend"], image: "assets/img/looks/su04.jpg",
       blurb: "高温闲逛的轻便组合。"
     },
     {
@@ -71,7 +91,7 @@ window.WARDROBE_CONFIG = {
       pieces: { top: "宽松白衬衫（袖口挽起）", bottom: "中长牛仔裙", shoes: "棕色皮质凉鞋", extras: ["细腰带"] },
       owned: ["宽松白衬衫（袖口挽起）", "中长牛仔裙", "棕色皮质凉鞋"],
       buy: ["细腰带"],
-      tags: ["dry", "smart"], image: null,
+      tags: ["dry", "smart"], image: "assets/img/looks/su05.jpg",
       blurb: "办公室空调房与户外之间的平衡。"
     },
     {
