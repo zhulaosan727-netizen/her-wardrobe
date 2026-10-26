@@ -119,7 +119,7 @@
     return lines
       .map((row) => {
         const buy = row.url
-          ? `<a class="buy-link" href="${row.url}" target="_blank" rel="noopener noreferrer">去淘宝</a>`
+          ? `<a class="buy-link" href="${row.url}" target="_blank" rel="noopener noreferrer">去购买</a>`
           : row.needBuy
             ? `<span class="buy-pending">待加链接</span>`
             : "";
@@ -144,7 +144,7 @@
       <div class="checklist">
         <h3>穿着清单</h3>
         <ul>${checklistHtml(lines)}</ul>
-        <p class="checklist-hint">${hasBuy ? "喜欢这套单品，点「去淘宝」下单。" : "把淘宝链接发给我后，这里会出现「去淘宝」。"}</p>
+        <p class="checklist-hint">${hasBuy ? "喜欢这套单品，点「去购买」下单。" : "把淘宝链接发给我后，这里会出现「去购买」。"}</p>
       </div>`;
   }
 

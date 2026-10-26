@@ -8,9 +8,28 @@ window.WARDROBE_CONFIG = {
     longitude: 121.4737,
     timezone: "Asia/Shanghai"
   },
-  /* 单品名 → 淘宝购买链接。有链接时今日清单显示「去淘宝」。先留空，发我链接再填。 */
+  /* 单品名 → 购买链接（暂用京东搜索；淘宝云端常被拦）。有精确商品页后可换成 item 链接。 */
   shop: {
-    /* 例: "细金手链": "https://item.taobao.com/item.htm?id=..." */
+    "驼色素色圆领针织": "https://search.jd.com/Search?keyword=%E9%A9%BC%E8%89%B2%E7%B4%A0%E8%89%B2%E5%9C%86%E9%A2%86%E9%92%88%E7%BB%87%20%E5%A5%B3&enc=utf-8",
+    "卡其直筒裤": "https://search.jd.com/Search?keyword=%E5%8D%A1%E5%85%B6%E7%9B%B4%E7%AD%92%E8%A3%A4%20%E5%A5%B3&enc=utf-8",
+    "棕色切尔西靴": "https://search.jd.com/Search?keyword=%E6%A3%95%E8%89%B2%E5%88%87%E5%B0%94%E8%A5%BF%E9%9D%B4%20%E5%A5%B3&enc=utf-8",
+    "米色中长开衫": "https://search.jd.com/Search?keyword=%E7%B1%B3%E8%89%B2%E4%B8%AD%E9%95%BF%E5%BC%80%E8%A1%AB%20%E5%A5%B3&enc=utf-8",
+    "格纹法兰绒衬衫": "https://search.jd.com/Search?keyword=%E6%A0%BC%E7%BA%B9%E6%B3%95%E5%85%B0%E7%BB%92%E8%A1%AC%E8%A1%AB%20%E5%A5%B3&enc=utf-8",
+    "深蓝直筒牛仔裤": "https://search.jd.com/Search?keyword=%E6%B7%B1%E8%93%9D%E7%9B%B4%E7%AD%92%E7%89%9B%E4%BB%94%E8%A3%A4%20%E5%A5%B3&enc=utf-8",
+    "白色运动鞋": "https://search.jd.com/Search?keyword=%E7%99%BD%E8%89%B2%E8%BF%90%E5%8A%A8%E9%9E%8B%20%E5%A5%B3&enc=utf-8",
+    "薄羽绒马甲": "https://search.jd.com/Search?keyword=%E8%96%84%E7%BE%BD%E7%BB%92%E9%A9%AC%E7%94%B2%20%E5%A5%B3&enc=utf-8",
+    "黑色细高领": "https://search.jd.com/Search?keyword=%E9%BB%91%E8%89%B2%E7%BB%86%E9%AB%98%E9%A2%86%20%E5%A5%B3&enc=utf-8",
+    "炭灰呢料半裙": "https://search.jd.com/Search?keyword=%E7%82%AD%E7%81%B0%E5%91%A2%E6%96%99%E5%8D%8A%E8%A3%99%20%E5%A5%B3&enc=utf-8",
+    "黑色短靴": "https://search.jd.com/Search?keyword=%E9%BB%91%E8%89%B2%E7%9F%AD%E9%9D%B4%20%E5%A5%B3&enc=utf-8",
+    "羊毛大衣（中长）": "https://search.jd.com/Search?keyword=%E7%BE%8A%E6%AF%9B%E5%A4%A7%E8%A1%A3%EF%BC%88%E4%B8%AD%E9%95%BF%EF%BC%89%20%E5%A5%B3&enc=utf-8",
+    "燕麦色连帽卫衣": "https://search.jd.com/Search?keyword=%E7%87%95%E9%BA%A6%E8%89%B2%E8%BF%9E%E5%B8%BD%E5%8D%AB%E8%A1%A3%20%E5%A5%B3&enc=utf-8",
+    "橄榄工装裤": "https://search.jd.com/Search?keyword=%E6%A9%84%E6%A6%84%E5%B7%A5%E8%A3%85%E8%A3%A4%20%E5%A5%B3&enc=utf-8",
+    "棕色老爹鞋": "https://search.jd.com/Search?keyword=%E6%A3%95%E8%89%B2%E8%80%81%E7%88%B9%E9%9E%8B%20%E5%A5%B3&enc=utf-8",
+    "棒球夹克": "https://search.jd.com/Search?keyword=%E6%A3%92%E7%90%83%E5%A4%B9%E5%85%8B%20%E5%A5%B3&enc=utf-8",
+    "白色牛津衬衫": "https://search.jd.com/Search?keyword=%E7%99%BD%E8%89%B2%E7%89%9B%E6%B4%A5%E8%A1%AC%E8%A1%AB%20%E5%A5%B3&enc=utf-8",
+    "黑色西裤": "https://search.jd.com/Search?keyword=%E9%BB%91%E8%89%B2%E8%A5%BF%E8%A3%A4%20%E5%A5%B3&enc=utf-8",
+    "黑色皮鞋": "https://search.jd.com/Search?keyword=%E9%BB%91%E8%89%B2%E7%9A%AE%E9%9E%8B%20%E5%A5%B3&enc=utf-8",
+    "细条纹西装外套": "https://search.jd.com/Search?keyword=%E7%BB%86%E6%9D%A1%E7%BA%B9%E8%A5%BF%E8%A3%85%E5%A4%96%E5%A5%97%20%E5%A5%B3&enc=utf-8"
   },
   /* 试穿图：主体+衣服的合成图放进 assets/img/looks/，image 填相对路径；有图则今日大图展示 */
   looks: [
@@ -77,7 +96,7 @@ window.WARDROBE_CONFIG = {
       pieces: { top: "驼色素色圆领针织", bottom: "卡其直筒裤", shoes: "棕色切尔西靴", extras: ["米色中长开衫"] },
       owned: ["驼色素色圆领针织", "卡其直筒裤", "棕色切尔西靴"],
       buy: ["米色中长开衫"],
-      tags: ["layer", "mid"], image: null,
+      tags: ["layer", "mid"], image: "assets/img/looks/fa01.jpg",
       blurb: "中层叠穿，秋日标准答案。"
     },
     {
@@ -85,7 +104,7 @@ window.WARDROBE_CONFIG = {
       pieces: { top: "格纹法兰绒衬衫", bottom: "深蓝直筒牛仔裤", shoes: "白色运动鞋", extras: ["薄羽绒马甲"] },
       owned: ["格纹法兰绒衬衫", "深蓝直筒牛仔裤", "白色运动鞋"],
       buy: ["薄羽绒马甲"],
-      tags: ["layer", "casual", "wind"], image: null,
+      tags: ["layer", "casual", "wind"], image: "assets/img/looks/fa02.jpg",
       blurb: "有风的日子多一层马甲。"
     },
     {
@@ -93,7 +112,7 @@ window.WARDROBE_CONFIG = {
       pieces: { top: "黑色细高领", bottom: "炭灰呢料半裙", shoes: "黑色短靴", extras: ["羊毛大衣（中长）"] },
       owned: ["黑色细高领", "炭灰呢料半裙", "黑色短靴"],
       buy: ["羊毛大衣（中长）"],
-      tags: ["layer", "smart", "jacket"], image: null,
+      tags: ["layer", "smart", "jacket"], image: "assets/img/looks/fa03.jpg",
       blurb: "会议与晚餐，外形干净。"
     },
     {
@@ -101,7 +120,7 @@ window.WARDROBE_CONFIG = {
       pieces: { top: "燕麦色连帽卫衣", bottom: "橄榄工装裤", shoes: "棕色老爹鞋", extras: ["棒球夹克"] },
       owned: ["燕麦色连帽卫衣", "橄榄工装裤", "棕色老爹鞋"],
       buy: ["棒球夹克"],
-      tags: ["casual", "weekend", "layer"], image: null,
+      tags: ["casual", "weekend", "layer"], image: "assets/img/looks/fa04.jpg",
       blurb: "周末市集与公园。"
     },
     {
@@ -109,7 +128,7 @@ window.WARDROBE_CONFIG = {
       pieces: { top: "白色牛津衬衫", bottom: "黑色西裤", shoes: "黑色皮鞋", extras: ["细条纹西装外套"] },
       owned: ["白色牛津衬衫", "黑色西裤", "黑色皮鞋"],
       buy: ["细条纹西装外套"],
-      tags: ["smart", "layer", "jacket"], image: null,
+      tags: ["smart", "layer", "jacket"], image: "assets/img/looks/fa05.jpg",
       blurb: "正式日的秋季版本。"
     },
     {
