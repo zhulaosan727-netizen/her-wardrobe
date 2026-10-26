@@ -144,7 +144,7 @@
       <div class="checklist">
         <h3>穿着清单</h3>
         <ul>${checklistHtml(lines)}</ul>
-        <p class="checklist-hint">${hasBuy ? "喜欢这套单品，点「去购买」下单。" : "把淘宝链接发给我后，这里会出现「去购买」。"}</p>
+        <p class="checklist-hint">${hasBuy ? "喜欢这套单品，点「去购买」去京东看同款。" : "喜欢可点「去购买」去京东看同款。"}</p>
       </div>`;
   }
 
@@ -154,7 +154,7 @@
       <main class="page" id="main">
         <p class="section-kicker">今日编选</p>
         <h2 class="section-title">今日五选</h2>
-        <p class="lede">每天五套。大图是「她穿着这套」的试穿图；清单里可点淘宝链接下单。</p>
+        <p class="lede">每天五套。大图是模特试穿图；清单可点「去购买」看同款。</p>
         <div class="today-spread" id="today-spread">
           <div class="hero-look">
             <div class="hero-frame" id="hero-frame">
