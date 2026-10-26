@@ -27,18 +27,41 @@
     return t.content.firstChild;
   }
 
+  function shopUrl(name, look) {
+    const shop = cfg.shop || {};
+    const lookUrls = (look && look.urls) || {};
+    return lookUrls[name] || shop[name] || "";
+  }
+
   function piecesLines(look) {
     const p = look.pieces || {};
     const lines = [];
-    if (p.onePiece) lines.push(["连身", p.onePiece]);
-    if (p.top) lines.push(["上装", p.top]);
-    if (p.bottom) lines.push(["下装", p.bottom]);
-    if (p.shoes) lines.push(["鞋履", p.shoes]);
-    (p.extras || []).forEach((x, i) => lines.push([i === 0 ? "配饰" : "", x]));
+    function push(role, name) {
+      if (!name) return;
+      const buySet = new Set(look.buy || []);
+      lines.push({
+        role,
+        name,
+        url: shopUrl(name, look),
+        needBuy: buySet.has(name)
+      });
+    }
+    push("连身", p.onePiece);
+    push("上装", p.top);
+    push("下装", p.bottom);
+    push("鞋履", p.shoes);
+    (p.extras || []).forEach((x, i) => push(i === 0 ? "配饰" : "", x));
     return lines;
   }
 
   function placeholderFrame(look, folio) {
+    if (look.image) {
+      return `
+      <div class="look-thumb has-image">
+        <img src="${look.image}" alt="${look.name} 试穿图" />
+        <span class="thumb-folio">${folio || look.id.toUpperCase()}</span>
+      </div>`;
+    }
     return `
       <div class="look-thumb" role="img" aria-label="${look.name} 占位图">
         <span class="thumb-folio">${folio || look.id.toUpperCase()}</span>
@@ -73,20 +96,46 @@
   }
 
   function lookThumbHtml(look, folio) {
-    return `
-      <div class="hero-placeholder-mark">
-        <div class="folio">${folio || look.id.toUpperCase()}</div>
-        <div class="caption">试穿图位置<br/><span style="font-size:0.85em;opacity:0.75">稍后可替换为实拍</span></div>
-      </div>
+    const meta = `
       <div class="hero-meta">
         <h3 class="hero-name">${look.name}</h3>
         <div class="hero-season">${SEASON_CN[look.season]}</div>
       </div>`;
+    if (look.image) {
+      return `
+      <img class="hero-tryon" src="${look.image}" alt="${look.name} 试穿图" />
+      ${meta}`;
+    }
+    return `
+      <div class="hero-placeholder-mark">
+        <div class="folio">${folio || look.id.toUpperCase()}</div>
+        <div class="caption">穿搭试穿图<br/><span style="font-size:0.85em;opacity:0.75">主体照片 + 本套衣服合成后显示在这里</span></div>
+        <a class="hero-profile-cta" href="#/profile">去完善主体档案 →</a>
+      </div>
+      ${meta}`;
+  }
+
+  function checklistHtml(lines) {
+    return lines
+      .map((row) => {
+        const buy = row.url
+          ? `<a class="buy-link" href="${row.url}" target="_blank" rel="noopener noreferrer">去淘宝</a>`
+          : row.needBuy
+            ? `<span class="buy-pending">待加链接</span>`
+            : "";
+        return `<li>
+            <span class="role">${row.role || "·"}</span>
+            <span class="piece-name">${row.name}</span>
+            ${buy}
+          </li>`;
+      })
+      .join("");
   }
 
   function paintTodayLook(spread, look, why) {
     const lines = piecesLines(look);
     $("#hero-frame", spread).innerHTML = lookThumbHtml(look);
+    const hasBuy = lines.some((r) => r.url);
     $("#side-rest", spread).innerHTML = `
       <div class="why-block">
         <h3>为何入选</h3>
@@ -94,14 +143,8 @@
       </div>
       <div class="checklist">
         <h3>穿着清单</h3>
-        <ul>
-          ${lines
-            .map(
-              ([role, name]) =>
-                `<li><span class="role">${role || "·"}</span><span>${name}</span></li>`
-            )
-            .join("")}
-        </ul>
+        <ul>${checklistHtml(lines)}</ul>
+        <p class="checklist-hint">${hasBuy ? "喜欢这套单品，点「去淘宝」下单。" : "把淘宝链接发给我后，这里会出现「去淘宝」。"}</p>
       </div>`;
   }
 
@@ -111,7 +154,7 @@
       <main class="page" id="main">
         <p class="section-kicker">今日编选</p>
         <h2 class="section-title">今日五选</h2>
-        <p class="lede">每天只看五套。天气帮你排序；点其中一套看清单，再决定出门穿哪套。</p>
+        <p class="lede">每天五套。大图是「她穿着这套」的试穿图；清单里可点淘宝链接下单。</p>
         <div class="today-spread" id="today-spread">
           <div class="hero-look">
             <div class="hero-frame" id="hero-frame">
@@ -183,7 +226,7 @@
         ${picks
           .map((look, i) => {
             const mini = piecesLines(look)
-              .map(([, n]) => n)
+              .map((row) => row.name)
               .join(" · ");
             return `
             <button type="button" class="today-pick${i === 0 ? " is-active" : ""}" role="listitem" data-index="${i}" aria-pressed="${i === 0 ? "true" : "false"}">
@@ -237,7 +280,7 @@
           ${list
             .map((look, i) => {
               const mini = piecesLines(look)
-                .map(([, n]) => n)
+                .map((row) => row.name)
                 .join(" · ");
               return `
               <article class="look-card">

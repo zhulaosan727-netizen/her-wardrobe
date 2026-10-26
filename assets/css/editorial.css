@@ -633,6 +633,68 @@ button {
 }
 
 
+
+.hero-tryon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+.hero-frame:has(.hero-tryon)::before { display: none; }
+.hero-profile-cta {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.checklist li {
+  display: grid;
+  grid-template-columns: 3.2rem 1fr auto;
+  gap: 0.55rem;
+  align-items: baseline;
+}
+.checklist .piece-name { min-width: 0; }
+.buy-link {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  border-bottom: 1px solid rgba(107, 45, 60, 0.35);
+  white-space: nowrap;
+}
+.buy-link:hover { color: var(--ink); border-color: var(--ink); }
+.buy-pending {
+  font-size: 0.72rem;
+  color: var(--ink-mute);
+  white-space: nowrap;
+}
+.checklist-hint {
+  margin: 0.85rem 0 0;
+  font-size: 0.78rem;
+  color: var(--ink-mute);
+  line-height: 1.5;
+}
+.look-thumb.has-image {
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+}
+.look-thumb.has-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 3 / 4;
+}
+.look-thumb.has-image .thumb-folio {
+  position: absolute;
+  left: 0.75rem;
+  top: 0.75rem;
+  background: rgba(244, 239, 230, 0.88);
+  padding: 0.2rem 0.45rem;
+}
+
 /* —— Today five picks —— */
 .today-picks {
   max-width: var(--max);

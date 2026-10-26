@@ -8,7 +8,11 @@ window.WARDROBE_CONFIG = {
     longitude: 121.4737,
     timezone: "Asia/Shanghai"
   },
-  /* 试穿图：把真实照片放进 assets/img/looks/ 后，把 image 改成相对路径即可 */
+  /* 单品名 → 淘宝购买链接。有链接时今日清单显示「去淘宝」。先留空，发我链接再填。 */
+  shop: {
+    /* 例: "细金手链": "https://item.taobao.com/item.htm?id=..." */
+  },
+  /* 试穿图：主体+衣服的合成图放进 assets/img/looks/，image 填相对路径；有图则今日大图展示 */
   looks: [
     /* —— 夏 Summer ×7 —— */
     {

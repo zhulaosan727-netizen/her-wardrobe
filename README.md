@@ -32,7 +32,7 @@ python3 -m http.server 8765 --directory "$preview_dir"
 
 ## 页面
 
-- `#/` 今日（上海天气 + 五套推荐，可点选查看清单）
+- `#/` 今日（上海天气 + 五套推荐；试穿大图 + 清单「去淘宝」）
 - `#/profile` 主体档案（身高、体重、穿衣偏好与 1～6 张本人主体照片）
 - `#/summer` `#/fall` `#/winter` `#/spring` 各 7 套
 - `#/gym` `#/lounge` 各 1 套
@@ -43,6 +43,12 @@ python3 -m http.server 8765 --directory "$preview_dir"
 ## 天气
 
 浏览器直连 [Open-Meteo](https://api.open-meteo.com)（无需 API Key）。失败时使用本地缓存或当季估温，页面不会空白。
+
+## 试穿图与淘宝链接
+
+- 每套造型的 `image`：放「主体 + 衣服」试穿图路径（`assets/img/looks/...`），今日大图会直接显示。
+- 配置里的 `shop`：`单品名 → 淘宝链接`。清单中有链接的单品显示「去淘宝」。
+- 试穿图需在站外生成（或实拍）后再嵌回；本站不跑 AI。
 
 ## 主体档案与本地存储
 
