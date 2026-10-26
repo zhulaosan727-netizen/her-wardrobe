@@ -1,0 +1,312 @@
+(function () {
+  const cfg = window.WARDROBE_CONFIG;
+  if (!cfg) {
+    document.body.innerHTML = "<p style='padding:2rem'>缺少配置 data/config.js</p>";
+    return;
+  }
+
+  const SEASON_CN = { summer: "夏", fall: "秋", winter: "冬", spring: "春", gym: "健身", lounge: "居家" };
+  const ROUTES = [
+    { hash: "#/", id: "home", label: "今日" },
+    { hash: "#/summer", id: "summer", label: "夏" },
+    { hash: "#/fall", id: "fall", label: "秋" },
+    { hash: "#/winter", id: "winter", label: "冬" },
+    { hash: "#/spring", id: "spring", label: "春" },
+    { hash: "#/gym", id: "gym", label: "健身" },
+    { hash: "#/lounge", id: "lounge", label: "居家" },
+    { hash: "#/pieces", id: "pieces", label: "单品" },
+    { hash: "#/purge", id: "purge", label: "清理" },
+    { hash: "#/rotation", id: "rotation", label: "轮换" }
+  ];
+
+  function $(sel, root) { return (root || document).querySelector(sel); }
+  function el(html) {
+    const t = document.createElement("template");
+    t.innerHTML = html.trim();
+    return t.content.firstChild;
+  }
+
+  function piecesLines(look) {
+    const p = look.pieces || {};
+    const lines = [];
+    if (p.onePiece) lines.push(["连身", p.onePiece]);
+    if (p.top) lines.push(["上装", p.top]);
+    if (p.bottom) lines.push(["下装", p.bottom]);
+    if (p.shoes) lines.push(["鞋履", p.shoes]);
+    (p.extras || []).forEach((x, i) => lines.push([i === 0 ? "配饰" : "", x]));
+    return lines;
+  }
+
+  function placeholderFrame(look, folio) {
+    return `
+      <div class="look-thumb" role="img" aria-label="${look.name} 占位图">
+        <span class="thumb-folio">${folio || look.id.toUpperCase()}</span>
+        <span class="thumb-label">${look.name}</span>
+      </div>`;
+  }
+
+  function renderMasthead(activeId) {
+    const nav = ROUTES.map((r) => {
+      const active = r.id === activeId ? " is-active" : "";
+      const aria = r.id === activeId ? ' aria-current="page"' : "";
+      return `<a href="${r.hash}" class="${active.trim()}"${aria}>${r.label}</a>`;
+    }).join("");
+    return `
+      <header class="masthead">
+        <div class="masthead-inner">
+          <div class="masthead-top">
+            <h1 class="site-title">${cfg.siteName}</h1>
+            <div class="site-tag">${cfg.tagline || ""}</div>
+          </div>
+          <nav class="nav" aria-label="主导航">${nav}</nav>
+        </div>
+      </header>`;
+  }
+
+  function renderFooter() {
+    return `
+      <footer class="footer">
+        <span>${cfg.siteName} · 私人衣橱</span>
+        <span>试穿图可稍后替换 · 天气来自 Open-Meteo</span>
+      </footer>`;
+  }
+
+  async function renderHome(root) {
+    root.innerHTML = `
+      ${renderMasthead("home")}
+      <main class="page" id="main">
+        <p class="section-kicker">今日编选</p>
+        <h2 class="section-title">今日穿什么</h2>
+        <p class="lede">打开这一页，只为定下今天的一套。天气参与决定；造型不离开三十套。</p>
+        <div class="today-spread" id="today-spread">
+          <div class="hero-look">
+            <div class="hero-frame" id="hero-frame">
+              <div class="hero-placeholder-mark">
+                <div class="folio">Loading</div>
+                <div class="caption">正在读取上海天气…</div>
+              </div>
+            </div>
+          </div>
+          <div class="weather-card" id="weather-card" aria-live="polite"></div>
+          <aside class="side-rest" id="side-rest"></aside>
+        </div>
+      </main>
+      ${renderFooter()}`;
+
+    const weather = await WardrobeWeather.fetchShanghaiWeather(cfg.city);
+    const pick = WardrobeSelect.selectToday(cfg.looks, weather);
+    const look = pick.primary;
+    const lines = piecesLines(look);
+
+    $("#hero-frame").innerHTML = `
+      <div class="hero-placeholder-mark">
+        <div class="folio">${look.id.toUpperCase()}</div>
+        <div class="caption">试穿图位置<br/><span style="font-size:0.85em;opacity:0.75">稍后可替换为实拍</span></div>
+      </div>
+      <div class="hero-meta">
+        <h3 class="hero-name">${look.name}</h3>
+        <div class="hero-season">${SEASON_CN[look.season]}</div>
+      </div>`;
+
+    const flags = [];
+    flags.push(`<span class="flag">体感 ${weather.apparent}°C</span>`);
+    flags.push(`<span class="flag">气温 ${weather.temp}°C</span>`);
+    if (weather.raining || weather.precip >= 1) {
+      flags.push(`<span class="flag is-alert">有雨 ${weather.precip} mm</span>`);
+    } else {
+      flags.push(`<span class="flag">无雨</span>`);
+    }
+    if (weather.wind >= 25) flags.push(`<span class="flag is-alert">风 ${weather.wind} km/h</span>`);
+    else flags.push(`<span class="flag">风 ${weather.wind} km/h</span>`);
+
+    const swapHtml = pick.swap
+      ? `<div class="swap-block">
+          <h3>天气替换</h3>
+          <div class="swap-look">${pick.swap.name}</div>
+          <p>${pick.swapWhy}</p>
+          <a class="swap-link" href="#/${pick.swap.season}">查看「${SEASON_CN[pick.swap.season]}」池 →</a>
+        </div>`
+      : "";
+
+    $("#weather-card").innerHTML = `
+        <p class="weather-city">${cfg.city.name}</p>
+        <p class="weather-temp">${weather.apparent}<span>°C</span></p>
+        <p class="weather-cond">${weather.condition}</p>
+        <div class="weather-flags">${flags.join("")}</div>
+        <p class="weather-status">${weather.statusLabel}</p>`;
+
+    $("#side-rest").innerHTML = `
+      <div class="why-block">
+        <h3>为何入选</h3>
+        <p>${pick.why}</p>
+      </div>
+      <div class="checklist">
+        <h3>穿着清单</h3>
+        <ul>
+          ${lines
+            .map(
+              ([role, name]) =>
+                `<li><span class="role">${role || "·"}</span><span>${name}</span></li>`
+            )
+            .join("")}
+        </ul>
+      </div>
+      ${swapHtml}`;
+  }
+
+  function renderSeason(root, season) {
+    const list = cfg.looks.filter((l) => l.season === season);
+    const titleMap = {
+      summer: "夏 · 七套",
+      fall: "秋 · 七套",
+      winter: "冬 · 七套",
+      spring: "春 · 七套",
+      gym: "健身 · 一套",
+      lounge: "居家 · 一套"
+    };
+    root.innerHTML = `
+      ${renderMasthead(season)}
+      <main class="page">
+        <p class="section-kicker">胶囊衣橱</p>
+        <h2 class="section-title">${titleMap[season]}</h2>
+        <p class="lede">只在这一池里轮换。天气不好时换同季另一套，不临时发明。</p>
+        <div class="look-grid">
+          ${list
+            .map((look, i) => {
+              const mini = piecesLines(look)
+                .map(([, n]) => n)
+                .join(" · ");
+              return `
+              <article class="look-card">
+                ${placeholderFrame(look, String(i + 1).padStart(2, "0"))}
+                <h3>${look.name}</h3>
+                <p class="blurb">${look.blurb || ""}</p>
+                <p class="pieces-mini">${mini}</p>
+              </article>`;
+            })
+            .join("")}
+        </div>
+      </main>
+      ${renderFooter()}`;
+  }
+
+  function allPieces() {
+    const map = new Map();
+    cfg.looks.forEach((look) => {
+      const owned = new Set(look.owned || []);
+      const buy = new Set(look.buy || []);
+      const names = [];
+      const p = look.pieces || {};
+      if (p.onePiece) names.push(p.onePiece);
+      if (p.top) names.push(p.top);
+      if (p.bottom) names.push(p.bottom);
+      if (p.shoes) names.push(p.shoes);
+      (p.extras || []).forEach((x) => names.push(x));
+      names.forEach((n) => {
+        if (!map.has(n)) map.set(n, { name: n, status: "owned", looks: [] });
+        const row = map.get(n);
+        row.looks.push(look.name);
+        if (buy.has(n)) row.status = "buy";
+        else if (owned.has(n)) row.status = row.status === "buy" ? "buy" : "owned";
+      });
+    });
+    return Array.from(map.values()).sort((a, b) => {
+      if (a.status !== b.status) return a.status === "buy" ? -1 : 1;
+      return a.name.localeCompare(b.name, "zh");
+    });
+  }
+
+  function renderPieces(root) {
+    const rows = allPieces();
+    root.innerHTML = `
+      ${renderMasthead("pieces")}
+      <main class="page">
+        <p class="section-kicker">单品档案</p>
+        <h2 class="section-title">单品库</h2>
+        <p class="lede">三十套拆开后的全部单品。「要买」是占位，可在配置里改成已有。</p>
+        <table class="piece-table">
+          <thead><tr><th>单品</th><th>状态</th><th>出现在</th></tr></thead>
+          <tbody>
+            ${rows
+              .map(
+                (r) => `
+              <tr>
+                <td>${r.name}</td>
+                <td><span class="badge ${r.status}">${r.status === "buy" ? "要买" : "已有"}</span></td>
+                <td>${r.looks.slice(0, 3).join("、")}${r.looks.length > 3 ? "…" : ""}</td>
+              </tr>`
+              )
+              .join("")}
+          </tbody>
+        </table>
+      </main>
+      ${renderFooter()}`;
+  }
+
+  function renderPurge(root) {
+    const purge = cfg.purge || [];
+    root.innerHTML = `
+      ${renderMasthead("purge")}
+      <main class="page">
+        <p class="section-kicker">删减清单</p>
+        <h2 class="section-title">清理清单</h2>
+        <p class="lede">不在三十套体系里的衣服。卖掉、捐赠或丢弃——腾出空间给真正上场的。</p>
+        <table class="purge-table">
+          <thead><tr><th>单品</th><th>建议</th><th>备注</th></tr></thead>
+          <tbody>
+            ${
+              purge.length
+                ? purge
+                    .map(
+                      (p) => `
+              <tr>
+                <td>${p.name}</td>
+                <td>${p.action || "—"}</td>
+                <td>${p.note || ""}</td>
+              </tr>`
+                    )
+                    .join("")
+                : `<tr><td colspan="3">清单为空。在 data/config.js 的 purge 数组里添加。</td></tr>`
+            }
+          </tbody>
+        </table>
+      </main>
+      ${renderFooter()}`;
+  }
+
+  function renderRotation(root) {
+    root.innerHTML = `
+      ${renderMasthead("rotation")}
+      <main class="page">
+        <p class="section-kicker">轮换节奏</p>
+        <h2 class="section-title">轮换说明</h2>
+        <div class="note-box">
+          <p>${cfg.rotationNote || ""}</p>
+        </div>
+        <p class="lede" style="margin-top:2rem">四季各七套，加上健身与居家，一共三十。首页只推一套；其余在当季页里待命。</p>
+      </main>
+      ${renderFooter()}`;
+  }
+
+  async function route() {
+    const raw = (location.hash || "#/").replace(/^#/, "") || "/";
+    const path = raw.split("?")[0];
+    const root = $("#app");
+    document.title = cfg.siteName;
+
+    if (path === "/" || path === "") return renderHome(root);
+    if (path === "/summer") return renderSeason(root, "summer");
+    if (path === "/fall") return renderSeason(root, "fall");
+    if (path === "/winter") return renderSeason(root, "winter");
+    if (path === "/spring") return renderSeason(root, "spring");
+    if (path === "/gym") return renderSeason(root, "gym");
+    if (path === "/lounge") return renderSeason(root, "lounge");
+    if (path === "/pieces") return renderPieces(root);
+    if (path === "/purge") return renderPurge(root);
+    if (path === "/rotation") return renderRotation(root);
+    location.hash = "#/";
+  }
+
+  window.addEventListener("hashchange", () => route());
+  route();
+})();
