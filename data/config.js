@@ -9,7 +9,7 @@ window.WARDROBE_CONFIG = {
     timezone: "Asia/Shanghai"
   },
   /* 今日专属五选：date 为 Asia/Shanghai YYYY-MM-DD 时，selectToday 优先按 ids 顺序返回 */
-  today: { date: "2026-10-29", ids: ["su01", "su02", "su03", "su04", "su05"] },
+  today: { date: "2026-10-30", ids: ["fa01", "fa02", "fa03", "fa04", "fa05"] },
   /* 单品名 → 购买链接（暂用京东搜索；淘宝云端常被拦）。有精确商品页后可换成 item 链接。 */
   shop: {
     "驼色素色圆领针织": "https://search.jd.com/Search?keyword=%E9%A9%BC%E8%89%B2%E7%B4%A0%E8%89%B2%E5%9C%86%E9%A2%86%E9%92%88%E7%BB%87%20%E5%A5%B3&enc=utf-8",
@@ -72,6 +72,25 @@ window.WARDROBE_CONFIG = {
     "黑色芭蕾平底鞋": "https://search.jd.com/Search?keyword=%E9%BB%91%E8%89%B2%E8%8A%AD%E8%95%BE%E5%B9%B3%E5%BA%95%E9%9E%8B%20%E5%A5%B3&enc=utf-8",
     "薄灰针织开衫": "https://search.jd.com/Search?keyword=%E8%96%84%E7%81%B0%E9%92%88%E7%BB%87%E5%BC%80%E8%A1%AB%20%E5%A5%B3&enc=utf-8",
   },
+    "奶油色半高领薄针织": "https://search.jd.com/Search?keyword=%E5%A5%B6%E6%B2%B9%E8%89%B2%E5%8D%8A%E9%AB%98%E9%A2%86%E8%96%84%E9%92%88%E7%BB%87%20%E5%A5%B3&enc=utf-8",
+    "浅卡其阔腿裤": "https://search.jd.com/Search?keyword=%E6%B5%85%E5%8D%A1%E5%85%B6%E9%98%94%E8%85%BF%E8%A3%A4%20%E5%A5%B3&enc=utf-8",
+    "棕色乐福鞋": "https://search.jd.com/Search?keyword=%E6%A3%95%E8%89%B2%E4%B9%90%E7%A6%8F%E9%9E%8B%20%E5%A5%B3&enc=utf-8",
+    "驼色短风衣": "https://search.jd.com/Search?keyword=%E9%A9%BC%E8%89%B2%E7%9F%AD%E9%A3%8E%E8%A1%A3%20%E5%A5%B3&enc=utf-8",
+    "乳白尖领衬衫": "https://search.jd.com/Search?keyword=%E4%B9%B3%E7%99%BD%E5%B0%96%E9%A2%86%E8%A1%AC%E8%A1%AB%20%E5%A5%B3&enc=utf-8",
+    "中蓝直筒牛仔裤": "https://search.jd.com/Search?keyword=%E4%B8%AD%E8%93%9D%E7%9B%B4%E7%AD%92%E7%89%9B%E4%BB%94%E8%A3%A4%20%E5%A5%B3&enc=utf-8",
+    "白色厚底小白鞋": "https://search.jd.com/Search?keyword=%E7%99%BD%E8%89%B2%E5%8E%9A%E5%BA%95%E5%B0%8F%E7%99%BD%E9%9E%8B%20%E5%A5%B3&enc=utf-8",
+    "深灰V领针织背心": "https://search.jd.com/Search?keyword=%E6%B7%B1%E7%81%B0V%E9%A2%86%E9%92%88%E7%BB%87%E8%83%8C%E5%BF%83%20%E5%A5%B3&enc=utf-8",
+    "米白长袖圆领T恤": "https://search.jd.com/Search?keyword=%E7%B1%B3%E7%99%BD%E9%95%BF%E8%A2%96%E5%9C%86%E9%A2%86T%E6%81%A4%20%E5%A5%B3&enc=utf-8",
+    "石洗浅蓝直筒牛仔裤": "https://search.jd.com/Search?keyword=%E7%9F%B3%E6%B4%97%E6%B5%85%E8%93%9D%E7%9B%B4%E7%AD%92%E7%89%9B%E4%BB%94%E8%A3%A4%20%E5%A5%B3&enc=utf-8",
+    "焦糖色踝靴": "https://search.jd.com/Search?keyword=%E7%84%A6%E7%B3%96%E8%89%B2%E8%B8%9D%E9%9D%B4%20%E5%A5%B3&enc=utf-8",
+    "焦糖灯芯绒短外套": "https://search.jd.com/Search?keyword=%E7%84%A6%E7%B3%96%E7%81%AF%E8%8A%AF%E7%BB%92%E7%9F%AD%E5%A4%96%E5%A5%97%20%E5%A5%B3&enc=utf-8",
+    "酒红圆领针织中长裙": "https://search.jd.com/Search?keyword=%E9%85%92%E7%BA%A2%E5%9C%86%E9%A2%86%E9%92%88%E7%BB%87%E4%B8%AD%E9%95%BF%E8%A3%99%20%E5%A5%B3&enc=utf-8",
+    "深棕踝靴": "https://search.jd.com/Search?keyword=%E6%B7%B1%E6%A3%95%E8%B8%9D%E9%9D%B4%20%E5%A5%B3&enc=utf-8",
+    "米色中长风衣": "https://search.jd.com/Search?keyword=%E7%B1%B3%E8%89%B2%E4%B8%AD%E9%95%BF%E9%A3%8E%E8%A1%A3%20%E5%A5%B3&enc=utf-8",
+    "麻灰色圆领套头针织": "https://search.jd.com/Search?keyword=%E9%BA%BB%E7%81%B0%E8%89%B2%E5%9C%86%E9%A2%86%E5%A5%97%E5%A4%B4%E9%92%88%E7%BB%87%20%E5%A5%B3&enc=utf-8",
+    "深灰九分西裤": "https://search.jd.com/Search?keyword=%E6%B7%B1%E7%81%B0%E4%B9%9D%E5%88%86%E8%A5%BF%E8%A3%A4%20%E5%A5%B3&enc=utf-8",
+    "黑色乐福鞋": "https://search.jd.com/Search?keyword=%E9%BB%91%E8%89%B2%E4%B9%90%E7%A6%8F%E9%9E%8B%20%E5%A5%B3&enc=utf-8",
+    "黑色短款皮夹克": "https://search.jd.com/Search?keyword=%E9%BB%91%E8%89%B2%E7%9F%AD%E6%AC%BE%E7%9A%AE%E5%A4%B9%E5%85%8B%20%E5%A5%B3&enc=utf-8",
   /* 试穿图：主体+衣服的合成图放进 assets/img/looks/，image 填相对路径；有图则今日大图展示 */
   looks: [
     /* —— 夏 Summer ×7 —— */
@@ -80,7 +99,7 @@ window.WARDROBE_CONFIG = {
       pieces: { top: "燕麦色短袖圆领针织", bottom: "橄榄绿A字半裙", shoes: "米白乐福鞋", extras: ["细金项链"] },
       owned: ["燕麦色短袖圆领针织", "橄榄绿A字半裙", "米白乐福鞋"],
       buy: ["细金项链"],
-      tags: ["dry", "smart", "light"], image: "assets/img/looks/su01.jpg",
+      tags: ["dry", "smart", "light"], image: "assets/img/looks/su01.jpg?v=20261030a",
       blurb: "体感二十度出头的通勤清爽款。"
     },
     {
@@ -88,7 +107,7 @@ window.WARDROBE_CONFIG = {
       pieces: { top: "浅蓝牛仔衬衫（袖口挽起）", bottom: "黑色中长半裙", shoes: "白色厚底运动鞋", extras: ["棕色迷你斜挎包"] },
       owned: ["浅蓝牛仔衬衫（袖口挽起）", "黑色中长半裙", "白色厚底运动鞋"],
       buy: ["棕色迷你斜挎包"],
-      tags: ["dry", "casual", "smart"], image: "assets/img/looks/su02.jpg",
+      tags: ["dry", "casual", "smart"], image: "assets/img/looks/su02.jpg?v=20261030a",
       blurb: "闲逛与轻会议都能穿。"
     },
     {
@@ -96,7 +115,7 @@ window.WARDROBE_CONFIG = {
       pieces: { onePiece: "橄榄绿棉质吊带连衣裙", shoes: "棕色编织凉鞋", extras: ["米色针织开衫"] },
       owned: ["橄榄绿棉质吊带连衣裙", "棕色编织凉鞋"],
       buy: ["米色针织开衫"],
-      tags: ["dry", "weekend", "layer", "light"], image: "assets/img/looks/su03.jpg",
+      tags: ["dry", "weekend", "layer", "light"], image: "assets/img/looks/su03.jpg?v=20261030a",
       blurb: "连衣裙加薄开衫，空调房也稳。"
     },
     {
@@ -104,7 +123,7 @@ window.WARDROBE_CONFIG = {
       pieces: { top: "纯白宽松圆领T恤", bottom: "沙色亚麻阔腿裤", shoes: "棕色平底凉鞋", extras: ["帆布托特包"] },
       owned: ["纯白宽松圆领T恤", "沙色亚麻阔腿裤", "棕色平底凉鞋"],
       buy: ["帆布托特包"],
-      tags: ["dry", "casual", "light"], image: "assets/img/looks/su04.jpg",
+      tags: ["dry", "casual", "light"], image: "assets/img/looks/su04.jpg?v=20261030a",
       blurb: "干燥晴天的透气日常。"
     },
     {
@@ -112,7 +131,7 @@ window.WARDROBE_CONFIG = {
       pieces: { top: "黑白细横条短袖罩衫", bottom: "黑色烟管九分裤", shoes: "黑色芭蕾平底鞋", extras: ["薄灰针织开衫"] },
       owned: ["黑白细横条短袖罩衫", "黑色烟管九分裤", "黑色芭蕾平底鞋"],
       buy: ["薄灰针织开衫"],
-      tags: ["dry", "smart", "layer", "commute"], image: "assets/img/looks/su05.jpg",
+      tags: ["dry", "smart", "layer", "commute"], image: "assets/img/looks/su05.jpg?v=20261030a",
       blurb: "轻度通勤，线条干净。"
     },
     {
@@ -133,45 +152,46 @@ window.WARDROBE_CONFIG = {
     },
     /* —— 秋 Fall ×7 —— */
     {
-      id: "fa01", season: "fall", name: "针织开衫与卡其",
-      pieces: { top: "驼色素色圆领针织", bottom: "卡其直筒裤", shoes: "棕色切尔西靴", extras: ["米色中长开衫"] },
-      owned: ["驼色素色圆领针织", "卡其直筒裤", "棕色切尔西靴"],
-      buy: ["米色中长开衫"],
-      tags: ["layer", "mid"], image: "assets/img/looks/fa01.jpg",
-      blurb: "中层叠穿，秋日标准答案。"
+      id: "fa01", season: "fall", name: "奶油半高领与卡其阔腿",
+      pieces: { top: "奶油色半高领薄针织", bottom: "浅卡其阔腿裤", shoes: "棕色乐福鞋", extras: ["驼色短风衣"] },
+      owned: ["奶油色半高领薄针织", "浅卡其阔腿裤", "棕色乐福鞋"],
+      buy: ["驼色短风衣"],
+      tags: ["layer", "mid", "dry"], image: "assets/img/looks/fa01.jpg?v=20261030a",
+      blurb: "晨雾偏凉，风衣可脱。"
     },
     {
-      id: "fa02", season: "fall", name: "法兰绒与深蓝牛仔裤",
-      pieces: { top: "格纹法兰绒衬衫", bottom: "深蓝直筒牛仔裤", shoes: "白色运动鞋", extras: ["薄羽绒马甲"] },
-      owned: ["格纹法兰绒衬衫", "深蓝直筒牛仔裤", "白色运动鞋"],
-      buy: ["薄羽绒马甲"],
-      tags: ["layer", "casual", "wind"], image: "assets/img/looks/fa02.jpg",
-      blurb: "有风的日子多一层马甲。"
+      id: "fa02", season: "fall", name: "白衬衫叠深灰背心",
+      pieces: { top: "乳白尖领衬衫", bottom: "中蓝直筒牛仔裤", shoes: "白色厚底小白鞋", extras: ["深灰V领针织背心"] },
+      owned: ["乳白尖领衬衫", "中蓝直筒牛仔裤", "白色厚底小白鞋"],
+      buy: ["深灰V领针织背心"],
+      tags: ["layer", "casual", "dry"], image: "assets/img/looks/fa02.jpg?v=20261030a",
+      blurb: "背心叠穿，午后可单穿衬衫。"
     },
     {
-      id: "fa03", season: "fall", name: "高领与呢料半裙",
-      pieces: { top: "黑色细高领", bottom: "炭灰呢料半裙", shoes: "黑色短靴", extras: ["羊毛大衣（中长）"] },
-      owned: ["黑色细高领", "炭灰呢料半裙", "黑色短靴"],
-      buy: ["羊毛大衣（中长）"],
-      tags: ["layer", "smart", "jacket"], image: "assets/img/looks/fa03.jpg",
-      blurb: "会议与晚餐，外形干净。"
+      id: "fa03", season: "fall", name: "焦糖灯芯绒与直筒牛仔",
+      pieces: { top: "米白长袖圆领T恤", bottom: "石洗浅蓝直筒牛仔裤", shoes: "焦糖色踝靴", extras: ["焦糖灯芯绒短外套"] },
+      owned: ["米白长袖圆领T恤", "石洗浅蓝直筒牛仔裤", "焦糖色踝靴"],
+      buy: ["焦糖灯芯绒短外套"],
+      tags: ["layer", "weekend", "dry"], image: "assets/img/looks/fa03.jpg?v=20261030a",
+      blurb: "周末街逛，外套随脱。"
     },
     {
-      id: "fa04", season: "fall", name: "卫衣与工装裤",
-      pieces: { top: "燕麦色连帽卫衣", bottom: "橄榄工装裤", shoes: "棕色老爹鞋", extras: ["棒球夹克"] },
-      owned: ["燕麦色连帽卫衣", "橄榄工装裤", "棕色老爹鞋"],
-      buy: ["棒球夹克"],
-      tags: ["casual", "weekend", "layer"], image: "assets/img/looks/fa04.jpg",
-      blurb: "周末市集与公园。"
+      id: "fa04", season: "fall", name: "酒红针织裙与米色风衣",
+      pieces: { onePiece: "酒红圆领针织中长裙", shoes: "深棕踝靴", extras: ["米色中长风衣"] },
+      owned: ["酒红圆领针织中长裙", "深棕踝靴"],
+      buy: ["米色中长风衣"],
+      tags: ["layer", "smart", "jacket", "dry"], image: "assets/img/looks/fa04.jpg?v=20261030a",
+      blurb: "轻正式，风衣挡晨雾。"
     },
     {
-      id: "fa05", season: "fall", name: "白衬衫与西裤叠穿",
-      pieces: { top: "白色牛津衬衫", bottom: "黑色西裤", shoes: "黑色皮鞋", extras: ["细条纹西装外套"] },
-      owned: ["白色牛津衬衫", "黑色西裤", "黑色皮鞋"],
-      buy: ["细条纹西装外套"],
-      tags: ["smart", "layer", "jacket"], image: "assets/img/looks/fa05.jpg",
-      blurb: "正式日的秋季版本。"
+      id: "fa05", season: "fall", name: "麻灰套头衫与九分西裤",
+      pieces: { top: "麻灰色圆领套头针织", bottom: "深灰九分西裤", shoes: "黑色乐福鞋", extras: ["黑色短款皮夹克"] },
+      owned: ["麻灰色圆领套头针织", "深灰九分西裤", "黑色乐福鞋"],
+      buy: ["黑色短款皮夹克"],
+      tags: ["smart", "layer", "jacket", "dry"], image: "assets/img/looks/fa05.jpg?v=20261030a",
+      blurb: "通勤利落，夹克可脱。"
     },
+
     {
       id: "fa06", season: "fall", name: "雨天呢外套",
       pieces: { top: "深灰高领针织", bottom: "黑色烟管裤", shoes: "防水短靴", extras: ["防水呢料外套"] },

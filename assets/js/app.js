@@ -139,6 +139,25 @@
       </div>`;
   }
 
+
+  function shanghaiDateLabel(date) {
+    date = date || new Date();
+    try {
+      return new Intl.DateTimeFormat("zh-CN", {
+        timeZone: "Asia/Shanghai",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        weekday: "short"
+      }).format(date);
+    } catch (e) {
+      const y = date.getFullYear();
+      const m = date.getMonth() + 1;
+      const d = date.getDate();
+      return `${y}年${m}月${d}日`;
+    }
+  }
+
   function weatherFlagsHtml(weather) {
     const flags = [];
     flags.push(`<span class="flag">体感 ${weather.apparent}°C</span>`);
@@ -154,8 +173,12 @@
   }
 
   function paintWeatherCard(spread, weather) {
+    const todayLabel = shanghaiDateLabel();
+    const packDate = cfg.today && cfg.today.date ? cfg.today.date : "";
+    const packNote = packDate ? ` · 造型 ${packDate}` : "";
     $("#weather-details", spread).innerHTML = `
         <p class="weather-city">${cfg.city.name}</p>
+        <p class="weather-date">${todayLabel}${packNote}</p>
         <p class="weather-temp">${weather.apparent}<span>°C</span></p>
         <p class="weather-cond">${weather.condition}</p>
         <div class="weather-flags">${weatherFlagsHtml(weather)}</div>
