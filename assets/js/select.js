@@ -71,8 +71,50 @@
     return bits.join(" ");
   }
 
-  function selectToday(looks, weather, date) {
+  /** Asia/Shanghai calendar date as YYYY-MM-DD */
+  function shanghaiYMD(date) {
+    try {
+      return new Intl.DateTimeFormat("en-CA", {
+        timeZone: "Asia/Shanghai",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+      }).format(date);
+    } catch (e) {
+      const y = date.getFullYear();
+      const m = String(date.getMonth() + 1).padStart(2, "0");
+      const d = String(date.getDate()).padStart(2, "0");
+      return `${y}-${m}-${d}`;
+    }
+  }
+
+  function pinnedToday(looks, weather, date, cfg) {
+    const pin = (cfg && cfg.today) || (global.WARDROBE_CONFIG && global.WARDROBE_CONFIG.today);
+    if (!pin || !pin.date || !Array.isArray(pin.ids) || !pin.ids.length) return null;
+    if (shanghaiYMD(date) !== pin.date) return null;
+
+    const byId = new Map((looks || []).map((look) => [look.id, look]));
+    const picks = pin.ids.map((id) => byId.get(id)).filter(Boolean).slice(0, DAILY_COUNT);
+    if (!picks.length) return null;
+
+    const preferred = picks[0].season || poolSeason(weather, date);
+    return {
+      preferred,
+      picks,
+      primary: picks[0],
+      why: `今日专属五选（${pin.date}）。体感约 ${weather.apparent}°C，首选「${picks[0].name}」。`,
+      seasonLabel: SEASON_LABEL[preferred] || preferred,
+      count: DAILY_COUNT
+    };
+  }
+
+  function selectToday(looks, weather, date, cfg) {
     date = date || new Date();
+    cfg = cfg || global.WARDROBE_CONFIG || {};
+
+    const pinned = pinnedToday(looks, weather, date, cfg);
+    if (pinned) return pinned;
+
     const preferred = poolSeason(weather, date);
     const ranked = (looks || [])
       .map((look) => ({ look, score: scoreLook(look, weather, preferred) }))

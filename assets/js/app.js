@@ -163,7 +163,7 @@
   }
 
   function showTodayPicks(root, spread, weather) {
-    const pick = WardrobeSelect.selectToday(cfg.looks, weather);
+    const pick = WardrobeSelect.selectToday(cfg.looks, weather, new Date(), cfg);
     const picks = pick.picks || [];
     const picksRoot = $("#today-picks", root);
     const gate = $("#today-gate", root);

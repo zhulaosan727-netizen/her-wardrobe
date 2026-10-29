@@ -8,6 +8,8 @@ window.WARDROBE_CONFIG = {
     longitude: 121.4737,
     timezone: "Asia/Shanghai"
   },
+  /* 今日专属五选：date 为 Asia/Shanghai YYYY-MM-DD 时，selectToday 优先按 ids 顺序返回 */
+  today: { date: "2026-10-29", ids: ["su01", "su02", "su03", "su04", "su05"] },
   /* 单品名 → 购买链接（暂用京东搜索；淘宝云端常被拦）。有精确商品页后可换成 item 链接。 */
   shop: {
     "驼色素色圆领针织": "https://search.jd.com/Search?keyword=%E9%A9%BC%E8%89%B2%E7%B4%A0%E8%89%B2%E5%9C%86%E9%A2%86%E9%92%88%E7%BB%87%20%E5%A5%B3&enc=utf-8",
@@ -49,50 +51,69 @@ window.WARDROBE_CONFIG = {
     "宽松白衬衫（袖口挽起）": "https://search.jd.com/Search?keyword=%E5%AE%BD%E6%9D%BE%E7%99%BD%E8%A1%AC%E8%A1%AB%EF%BC%88%E8%A2%96%E5%8F%A3%E6%8C%BD%E8%B5%B7%EF%BC%89%20%E5%A5%B3&enc=utf-8",
     "中长牛仔裙": "https://search.jd.com/Search?keyword=%E4%B8%AD%E9%95%BF%E7%89%9B%E4%BB%94%E8%A3%99%20%E5%A5%B3&enc=utf-8",
     "棕色皮质凉鞋": "https://search.jd.com/Search?keyword=%E6%A3%95%E8%89%B2%E7%9A%AE%E8%B4%A8%E5%87%89%E9%9E%8B%20%E5%A5%B3&enc=utf-8",
-    "细腰带": "https://search.jd.com/Search?keyword=%E7%BB%86%E8%85%B0%E5%B8%A6%20%E5%A5%B3&enc=utf-8"
+    "细腰带": "https://search.jd.com/Search?keyword=%E7%BB%86%E8%85%B0%E5%B8%A6%20%E5%A5%B3&enc=utf-8",
+    "燕麦色短袖圆领针织": "https://search.jd.com/Search?keyword=%E7%87%95%E9%BA%A6%E8%89%B2%E7%9F%AD%E8%A2%96%E5%9C%86%E9%A2%86%E9%92%88%E7%BB%87%20%E5%A5%B3&enc=utf-8",
+    "橄榄绿A字半裙": "https://search.jd.com/Search?keyword=%E6%A9%84%E6%A6%84%E7%BB%BFA%E5%AD%97%E5%8D%8A%E8%A3%99%20%E5%A5%B3&enc=utf-8",
+    "米白乐福鞋": "https://search.jd.com/Search?keyword=%E7%B1%B3%E7%99%BD%E4%B9%90%E7%A6%8F%E9%9E%8B%20%E5%A5%B3&enc=utf-8",
+    "细金项链": "https://search.jd.com/Search?keyword=%E7%BB%86%E9%87%91%E9%A1%B9%E9%93%BE%20%E5%A5%B3&enc=utf-8",
+    "浅蓝牛仔衬衫（袖口挽起）": "https://search.jd.com/Search?keyword=%E6%B5%85%E8%93%9D%E7%89%9B%E4%BB%94%E8%A1%AC%E8%A1%AB%EF%BC%88%E8%A2%96%E5%8F%A3%E6%8C%BD%E8%B5%B7%EF%BC%89%20%E5%A5%B3&enc=utf-8",
+    "黑色中长半裙": "https://search.jd.com/Search?keyword=%E9%BB%91%E8%89%B2%E4%B8%AD%E9%95%BF%E5%8D%8A%E8%A3%99%20%E5%A5%B3&enc=utf-8",
+    "白色厚底运动鞋": "https://search.jd.com/Search?keyword=%E7%99%BD%E8%89%B2%E5%8E%9A%E5%BA%95%E8%BF%90%E5%8A%A8%E9%9E%8B%20%E5%A5%B3&enc=utf-8",
+    "棕色迷你斜挎包": "https://search.jd.com/Search?keyword=%E6%A3%95%E8%89%B2%E8%BF%B7%E4%BD%A0%E6%96%9C%E6%8C%8E%E5%8C%85%20%E5%A5%B3&enc=utf-8",
+    "橄榄绿棉质吊带连衣裙": "https://search.jd.com/Search?keyword=%E6%A9%84%E6%A6%84%E7%BB%BF%E6%A3%89%E8%B4%A8%E5%90%8A%E5%B8%A6%E8%BF%9E%E8%A1%A3%E8%A3%99%20%E5%A5%B3&enc=utf-8",
+    "棕色编织凉鞋": "https://search.jd.com/Search?keyword=%E6%A3%95%E8%89%B2%E7%BC%96%E7%BB%87%E5%87%89%E9%9E%8B%20%E5%A5%B3&enc=utf-8",
+    "米色针织开衫": "https://search.jd.com/Search?keyword=%E7%B1%B3%E8%89%B2%E9%92%88%E7%BB%87%E5%BC%80%E8%A1%AB%20%E5%A5%B3&enc=utf-8",
+    "纯白宽松圆领T恤": "https://search.jd.com/Search?keyword=%E7%BA%AF%E7%99%BD%E5%AE%BD%E6%9D%BE%E5%9C%86%E9%A2%86T%E6%81%A4%20%E5%A5%B3&enc=utf-8",
+    "沙色亚麻阔腿裤": "https://search.jd.com/Search?keyword=%E6%B2%99%E8%89%B2%E4%BA%9A%E9%BA%BB%E9%98%94%E8%85%BF%E8%A3%A4%20%E5%A5%B3&enc=utf-8",
+    "棕色平底凉鞋": "https://search.jd.com/Search?keyword=%E6%A3%95%E8%89%B2%E5%B9%B3%E5%BA%95%E5%87%89%E9%9E%8B%20%E5%A5%B3&enc=utf-8",
+    "帆布托特包": "https://search.jd.com/Search?keyword=%E5%B8%86%E5%B8%83%E6%89%98%E7%89%B9%E5%8C%85%20%E5%A5%B3&enc=utf-8",
+    "黑白细横条短袖罩衫": "https://search.jd.com/Search?keyword=%E9%BB%91%E7%99%BD%E7%BB%86%E6%A8%AA%E6%9D%A1%E7%9F%AD%E8%A2%96%E7%BD%A9%E8%A1%AB%20%E5%A5%B3&enc=utf-8",
+    "黑色烟管九分裤": "https://search.jd.com/Search?keyword=%E9%BB%91%E8%89%B2%E7%83%9F%E7%AE%A1%E4%B9%9D%E5%88%86%E8%A3%A4%20%E5%A5%B3&enc=utf-8",
+    "黑色芭蕾平底鞋": "https://search.jd.com/Search?keyword=%E9%BB%91%E8%89%B2%E8%8A%AD%E8%95%BE%E5%B9%B3%E5%BA%95%E9%9E%8B%20%E5%A5%B3&enc=utf-8",
+    "薄灰针织开衫": "https://search.jd.com/Search?keyword=%E8%96%84%E7%81%B0%E9%92%88%E7%BB%87%E5%BC%80%E8%A1%AB%20%E5%A5%B3&enc=utf-8",
   },
   /* 试穿图：主体+衣服的合成图放进 assets/img/looks/，image 填相对路径；有图则今日大图展示 */
   looks: [
     /* —— 夏 Summer ×7 —— */
     {
-      id: "su01", season: "summer", name: "亚麻白衫与阔腿",
-      pieces: { top: "白色亚麻短袖衬衫", bottom: "米色阔腿西裤", shoes: "裸色平底凉鞋", extras: ["细金手链"] },
-      owned: ["白色亚麻短袖衬衫", "米色阔腿西裤", "裸色平底凉鞋"],
-      buy: ["细金手链"],
-      tags: ["dry", "light"], image: "assets/img/looks/su01.jpg",
-      blurb: "透气、利落，适合晴热的工作日。"
+      id: "su01", season: "summer", name: "燕麦针织与橄榄半裙",
+      pieces: { top: "燕麦色短袖圆领针织", bottom: "橄榄绿A字半裙", shoes: "米白乐福鞋", extras: ["细金项链"] },
+      owned: ["燕麦色短袖圆领针织", "橄榄绿A字半裙", "米白乐福鞋"],
+      buy: ["细金项链"],
+      tags: ["dry", "smart", "light"], image: "assets/img/looks/su01.jpg",
+      blurb: "体感二十度出头的通勤清爽款。"
     },
     {
-      id: "su02", season: "summer", name: "海军条纹与白裤",
-      pieces: { top: "海军蓝白条纹 T 恤", bottom: "白色直筒牛仔裤", shoes: "白色皮质运动鞋", extras: ["草编托特包"] },
-      owned: ["海军蓝白条纹 T 恤", "白色直筒牛仔裤", "白色皮质运动鞋"],
-      buy: ["草编托特包"],
-      tags: ["dry", "casual"], image: "assets/img/looks/su02.jpg",
-      blurb: "周末散步与咖啡馆，轻松但不随便。"
+      id: "su02", season: "summer", name: "牛仔衬衫与黑裙",
+      pieces: { top: "浅蓝牛仔衬衫（袖口挽起）", bottom: "黑色中长半裙", shoes: "白色厚底运动鞋", extras: ["棕色迷你斜挎包"] },
+      owned: ["浅蓝牛仔衬衫（袖口挽起）", "黑色中长半裙", "白色厚底运动鞋"],
+      buy: ["棕色迷你斜挎包"],
+      tags: ["dry", "casual", "smart"], image: "assets/img/looks/su02.jpg",
+      blurb: "闲逛与轻会议都能穿。"
     },
     {
-      id: "su03", season: "summer", name: "丝质吊带连衣裙",
-      pieces: { onePiece: "香槟丝质吊带裙", shoes: "细带裸色凉鞋", extras: ["薄纱披肩", "小耳钉"] },
-      owned: ["香槟丝质吊带裙", "细带裸色凉鞋", "小耳钉"],
-      buy: ["薄纱披肩"],
-      tags: ["dry", "evening"], image: "assets/img/looks/su03.jpg",
-      blurb: "晚间聚餐与轻仪式感场合。"
+      id: "su03", season: "summer", name: "橄榄绿吊带裙",
+      pieces: { onePiece: "橄榄绿棉质吊带连衣裙", shoes: "棕色编织凉鞋", extras: ["米色针织开衫"] },
+      owned: ["橄榄绿棉质吊带连衣裙", "棕色编织凉鞋"],
+      buy: ["米色针织开衫"],
+      tags: ["dry", "weekend", "layer", "light"], image: "assets/img/looks/su03.jpg",
+      blurb: "连衣裙加薄开衫，空调房也稳。"
     },
     {
-      id: "su04", season: "summer", name: "短袖针织与短裤",
-      pieces: { top: "浅灰短袖针织", bottom: "卡其棉短裤", shoes: "白色帆布鞋", extras: ["棒球帽"] },
-      owned: ["浅灰短袖针织", "卡其棉短裤", "白色帆布鞋"],
-      buy: [],
-      tags: ["dry", "weekend"], image: "assets/img/looks/su04.jpg",
-      blurb: "高温闲逛的轻便组合。"
+      id: "su04", season: "summer", name: "白T与沙色阔腿",
+      pieces: { top: "纯白宽松圆领T恤", bottom: "沙色亚麻阔腿裤", shoes: "棕色平底凉鞋", extras: ["帆布托特包"] },
+      owned: ["纯白宽松圆领T恤", "沙色亚麻阔腿裤", "棕色平底凉鞋"],
+      buy: ["帆布托特包"],
+      tags: ["dry", "casual", "light"], image: "assets/img/looks/su04.jpg",
+      blurb: "干燥晴天的透气日常。"
     },
     {
-      id: "su05", season: "summer", name: "白衬衫与牛仔裙",
-      pieces: { top: "宽松白衬衫（袖口挽起）", bottom: "中长牛仔裙", shoes: "棕色皮质凉鞋", extras: ["细腰带"] },
-      owned: ["宽松白衬衫（袖口挽起）", "中长牛仔裙", "棕色皮质凉鞋"],
-      buy: ["细腰带"],
-      tags: ["dry", "smart"], image: "assets/img/looks/su05.jpg",
-      blurb: "办公室空调房与户外之间的平衡。"
+      id: "su05", season: "summer", name: "条纹罩衫与烟管裤",
+      pieces: { top: "黑白细横条短袖罩衫", bottom: "黑色烟管九分裤", shoes: "黑色芭蕾平底鞋", extras: ["薄灰针织开衫"] },
+      owned: ["黑白细横条短袖罩衫", "黑色烟管九分裤", "黑色芭蕾平底鞋"],
+      buy: ["薄灰针织开衫"],
+      tags: ["dry", "smart", "layer", "commute"], image: "assets/img/looks/su05.jpg",
+      blurb: "轻度通勤，线条干净。"
     },
     {
       id: "su06", season: "summer", name: "雨天轻便套装",
