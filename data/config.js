@@ -9,7 +9,7 @@ window.WARDROBE_CONFIG = {
     timezone: "Asia/Shanghai"
   },
   /* 今日专属五选：date 为 Asia/Shanghai YYYY-MM-DD 时，selectToday 优先按 ids 顺序返回 */
-  today: { date: "2026-10-30", ids: ["fa01", "fa02", "fa03", "fa04", "fa05"] },
+  today: { date: "2026-10-31", ids: ["fa01", "fa02", "fa03", "fa04", "fa05"] },
   /* 单品名 → 购买链接（暂用京东搜索；淘宝云端常被拦）。有精确商品页后可换成 item 链接。 */
   shop: {
     "驼色素色圆领针织": "https://search.jd.com/Search?keyword=%E9%A9%BC%E8%89%B2%E7%B4%A0%E8%89%B2%E5%9C%86%E9%A2%86%E9%92%88%E7%BB%87%20%E5%A5%B3&enc=utf-8",
@@ -71,7 +71,6 @@ window.WARDROBE_CONFIG = {
     "黑色烟管九分裤": "https://search.jd.com/Search?keyword=%E9%BB%91%E8%89%B2%E7%83%9F%E7%AE%A1%E4%B9%9D%E5%88%86%E8%A3%A4%20%E5%A5%B3&enc=utf-8",
     "黑色芭蕾平底鞋": "https://search.jd.com/Search?keyword=%E9%BB%91%E8%89%B2%E8%8A%AD%E8%95%BE%E5%B9%B3%E5%BA%95%E9%9E%8B%20%E5%A5%B3&enc=utf-8",
     "薄灰针织开衫": "https://search.jd.com/Search?keyword=%E8%96%84%E7%81%B0%E9%92%88%E7%BB%87%E5%BC%80%E8%A1%AB%20%E5%A5%B3&enc=utf-8",
-  },
     "奶油色半高领薄针织": "https://search.jd.com/Search?keyword=%E5%A5%B6%E6%B2%B9%E8%89%B2%E5%8D%8A%E9%AB%98%E9%A2%86%E8%96%84%E9%92%88%E7%BB%87%20%E5%A5%B3&enc=utf-8",
     "浅卡其阔腿裤": "https://search.jd.com/Search?keyword=%E6%B5%85%E5%8D%A1%E5%85%B6%E9%98%94%E8%85%BF%E8%A3%A4%20%E5%A5%B3&enc=utf-8",
     "棕色乐福鞋": "https://search.jd.com/Search?keyword=%E6%A3%95%E8%89%B2%E4%B9%90%E7%A6%8F%E9%9E%8B%20%E5%A5%B3&enc=utf-8",
@@ -91,6 +90,25 @@ window.WARDROBE_CONFIG = {
     "深灰九分西裤": "https://search.jd.com/Search?keyword=%E6%B7%B1%E7%81%B0%E4%B9%9D%E5%88%86%E8%A5%BF%E8%A3%A4%20%E5%A5%B3&enc=utf-8",
     "黑色乐福鞋": "https://search.jd.com/Search?keyword=%E9%BB%91%E8%89%B2%E4%B9%90%E7%A6%8F%E9%9E%8B%20%E5%A5%B3&enc=utf-8",
     "黑色短款皮夹克": "https://search.jd.com/Search?keyword=%E9%BB%91%E8%89%B2%E7%9F%AD%E6%AC%BE%E7%9A%AE%E5%A4%B9%E5%85%8B%20%E5%A5%B3&enc=utf-8",
+    "鼠尾草绿圆领细针织": "https://search.jd.com/Search?keyword=%E9%BC%A0%E5%B0%BE%E8%8D%89%E7%BB%BF%E5%9C%86%E9%A2%86%E7%BB%86%E9%92%88%E7%BB%87%20%E5%A5%B3&enc=utf-8",
+    "灰褐高腰阔腿裤": "https://search.jd.com/Search?keyword=%E7%81%B0%E8%A4%90%E9%AB%98%E8%85%B0%E9%98%94%E8%85%BF%E8%A3%A4%20%E5%A5%B3&enc=utf-8",
+    "米白踝靴": "https://search.jd.com/Search?keyword=%E7%B1%B3%E7%99%BD%E8%B8%9D%E9%9D%B4%20%E5%A5%B3&enc=utf-8",
+    "豆沙粉羊毛短外套": "https://search.jd.com/Search?keyword=%E8%B1%86%E6%B2%99%E7%B2%89%E7%BE%8A%E6%AF%9B%E7%9F%AD%E5%A4%96%E5%A5%97%20%E5%A5%B3&enc=utf-8",
+    "象牙白罗纹高领针织": "https://search.jd.com/Search?keyword=%E8%B1%A1%E7%89%99%E7%99%BD%E7%BD%97%E7%BA%B9%E9%AB%98%E9%A2%86%E9%92%88%E7%BB%87%20%E5%A5%B3&enc=utf-8",
+    "巧克力灯芯绒A字中裙": "https://search.jd.com/Search?keyword=%E5%B7%A7%E5%85%8B%E5%8A%9B%E7%81%AF%E8%8A%AF%E7%BB%92A%E5%AD%97%E4%B8%AD%E8%A3%99%20%E5%A5%B3&enc=utf-8",
+    "焦糖色乐福鞋": "https://search.jd.com/Search?keyword=%E7%84%A6%E7%B3%96%E8%89%B2%E4%B9%90%E7%A6%8F%E9%9E%8B%20%E5%A5%B3&enc=utf-8",
+    "炭灰双排扣西装外套": "https://search.jd.com/Search?keyword=%E7%82%AD%E7%81%B0%E5%8F%8C%E6%8E%92%E6%89%A3%E8%A5%BF%E8%A3%85%E5%A4%96%E5%A5%97%20%E5%A5%B3&enc=utf-8",
+    "燕麦色亨利领长袖针织": "https://search.jd.com/Search?keyword=%E7%87%95%E9%BA%A6%E8%89%B2%E4%BA%A8%E5%88%A9%E9%A2%86%E9%95%BF%E8%A2%96%E9%92%88%E7%BB%87%20%E5%A5%B3&enc=utf-8",
+    "靛蓝桶形牛仔裤": "https://search.jd.com/Search?keyword=%E9%9D%9B%E8%93%9D%E6%A1%B6%E5%BD%A2%E7%89%9B%E4%BB%94%E8%A3%A4%20%E5%A5%B3&enc=utf-8",
+    "苔绿轻薄绗缝马甲": "https://search.jd.com/Search?keyword=%E8%8B%94%E7%BB%BF%E8%BD%BB%E8%96%84%E7%BB%97%E7%BC%9D%E9%A9%AC%E7%94%B2%20%E5%A5%B3&enc=utf-8",
+    "铁锈橙针织毛衣裙": "https://search.jd.com/Search?keyword=%E9%93%81%E9%94%88%E6%A9%99%E9%92%88%E7%BB%87%E6%AF%9B%E8%A1%A3%E8%A3%99%20%E5%A5%B3&enc=utf-8",
+    "黑色连裤袜": "https://search.jd.com/Search?keyword=%E9%BB%91%E8%89%B2%E8%BF%9E%E8%A3%A4%E8%A2%9C%20%E5%A5%B3&enc=utf-8",
+    "驼色系带风衣": "https://search.jd.com/Search?keyword=%E9%A9%BC%E8%89%B2%E7%B3%BB%E5%B8%A6%E9%A3%8E%E8%A1%A3%20%E5%A5%B3&enc=utf-8",
+    "淡蓝牛津纺衬衫": "https://search.jd.com/Search?keyword=%E6%B7%A1%E8%93%9D%E7%89%9B%E6%B4%A5%E7%BA%BA%E8%A1%AC%E8%A1%AB%20%E5%A5%B3&enc=utf-8",
+    "黑色高腰烟管裤": "https://search.jd.com/Search?keyword=%E9%BB%91%E8%89%B2%E9%AB%98%E8%85%B0%E7%83%9F%E7%AE%A1%E8%A3%A4%20%E5%A5%B3&enc=utf-8",
+    "黑色玛丽珍平底鞋": "https://search.jd.com/Search?keyword=%E9%BB%91%E8%89%B2%E7%8E%9B%E4%B8%BD%E7%8F%8D%E5%B9%B3%E5%BA%95%E9%9E%8B%20%E5%A5%B3&enc=utf-8",
+    "奶油色短款开衫": "https://search.jd.com/Search?keyword=%E5%A5%B6%E6%B2%B9%E8%89%B2%E7%9F%AD%E6%AC%BE%E5%BC%80%E8%A1%AB%20%E5%A5%B3&enc=utf-8",
+  },
   /* 试穿图：主体+衣服的合成图放进 assets/img/looks/，image 填相对路径；有图则今日大图展示 */
   looks: [
     /* —— 夏 Summer ×7 —— */
@@ -152,44 +170,44 @@ window.WARDROBE_CONFIG = {
     },
     /* —— 秋 Fall ×7 —— */
     {
-      id: "fa01", season: "fall", name: "奶油半高领与卡其阔腿",
-      pieces: { top: "奶油色半高领薄针织", bottom: "浅卡其阔腿裤", shoes: "棕色乐福鞋", extras: ["驼色短风衣"] },
-      owned: ["奶油色半高领薄针织", "浅卡其阔腿裤", "棕色乐福鞋"],
-      buy: ["驼色短风衣"],
-      tags: ["layer", "mid", "dry"], image: "assets/img/looks/fa01.jpg?v=20261030a",
-      blurb: "晨雾偏凉，风衣可脱。"
+      id: "fa01", season: "fall", name: "鼠尾草针织与灰褐阔腿",
+      pieces: { top: "鼠尾草绿圆领细针织", bottom: "灰褐高腰阔腿裤", shoes: "米白踝靴", extras: ["豆沙粉羊毛短外套"] },
+      owned: ["鼠尾草绿圆领细针织", "灰褐高腰阔腿裤", "米白踝靴"],
+      buy: ["豆沙粉羊毛短外套"],
+      tags: ["layer", "mid", "dry"], image: "assets/img/looks/fa01.jpg?v=20261031a",
+      blurb: "晴冷晨约13°C，短外套可脱；午间近23°C仍清爽。"
     },
     {
-      id: "fa02", season: "fall", name: "白衬衫叠深灰背心",
-      pieces: { top: "乳白尖领衬衫", bottom: "中蓝直筒牛仔裤", shoes: "白色厚底小白鞋", extras: ["深灰V领针织背心"] },
-      owned: ["乳白尖领衬衫", "中蓝直筒牛仔裤", "白色厚底小白鞋"],
-      buy: ["深灰V领针织背心"],
-      tags: ["layer", "casual", "dry"], image: "assets/img/looks/fa02.jpg?v=20261030a",
-      blurb: "背心叠穿，午后可单穿衬衫。"
+      id: "fa02", season: "fall", name: "象牙白高领与灯芯绒裙",
+      pieces: { top: "象牙白罗纹高领针织", bottom: "巧克力灯芯绒A字中裙", shoes: "焦糖色乐福鞋", extras: ["炭灰双排扣西装外套"] },
+      owned: ["象牙白罗纹高领针织", "巧克力灯芯绒A字中裙", "焦糖色乐福鞋"],
+      buy: ["炭灰双排扣西装外套"],
+      tags: ["layer", "smart", "dry"], image: "assets/img/looks/fa02.jpg?v=20261031a",
+      blurb: "轻正式叠穿，西装午后可挂。"
     },
     {
-      id: "fa03", season: "fall", name: "焦糖灯芯绒与直筒牛仔",
-      pieces: { top: "米白长袖圆领T恤", bottom: "石洗浅蓝直筒牛仔裤", shoes: "焦糖色踝靴", extras: ["焦糖灯芯绒短外套"] },
-      owned: ["米白长袖圆领T恤", "石洗浅蓝直筒牛仔裤", "焦糖色踝靴"],
-      buy: ["焦糖灯芯绒短外套"],
-      tags: ["layer", "weekend", "dry"], image: "assets/img/looks/fa03.jpg?v=20261030a",
-      blurb: "周末街逛，外套随脱。"
+      id: "fa03", season: "fall", name: "燕麦亨利衫与桶形牛仔",
+      pieces: { top: "燕麦色亨利领长袖针织", bottom: "靛蓝桶形牛仔裤", shoes: "白色厚底小白鞋", extras: ["苔绿轻薄绗缝马甲"] },
+      owned: ["燕麦色亨利领长袖针织", "靛蓝桶形牛仔裤", "白色厚底小白鞋"],
+      buy: ["苔绿轻薄绗缝马甲"],
+      tags: ["layer", "casual", "weekend", "dry"], image: "assets/img/looks/fa03.jpg?v=20261031a",
+      blurb: "周末街逛，马甲随脱。"
     },
     {
-      id: "fa04", season: "fall", name: "酒红针织裙与米色风衣",
-      pieces: { onePiece: "酒红圆领针织中长裙", shoes: "深棕踝靴", extras: ["米色中长风衣"] },
-      owned: ["酒红圆领针织中长裙", "深棕踝靴"],
-      buy: ["米色中长风衣"],
-      tags: ["layer", "smart", "jacket", "dry"], image: "assets/img/looks/fa04.jpg?v=20261030a",
-      blurb: "轻正式，风衣挡晨雾。"
+      id: "fa04", season: "fall", name: "铁锈橙针织裙与驼风衣",
+      pieces: { onePiece: "铁锈橙针织毛衣裙", shoes: "黑色短靴", extras: ["黑色连裤袜", "驼色系带风衣"] },
+      owned: ["铁锈橙针织毛衣裙", "黑色短靴", "黑色连裤袜"],
+      buy: ["驼色系带风衣"],
+      tags: ["layer", "smart", "jacket", "dry"], image: "assets/img/looks/fa04.jpg?v=20261031a",
+      blurb: "晨凉披风衣，午间单穿裙装即可。"
     },
     {
-      id: "fa05", season: "fall", name: "麻灰套头衫与九分西裤",
-      pieces: { top: "麻灰色圆领套头针织", bottom: "深灰九分西裤", shoes: "黑色乐福鞋", extras: ["黑色短款皮夹克"] },
-      owned: ["麻灰色圆领套头针织", "深灰九分西裤", "黑色乐福鞋"],
-      buy: ["黑色短款皮夹克"],
-      tags: ["smart", "layer", "jacket", "dry"], image: "assets/img/looks/fa05.jpg?v=20261030a",
-      blurb: "通勤利落，夹克可脱。"
+      id: "fa05", season: "fall", name: "淡蓝牛津衫与烟管裤",
+      pieces: { top: "淡蓝牛津纺衬衫", bottom: "黑色高腰烟管裤", shoes: "黑色玛丽珍平底鞋", extras: ["奶油色短款开衫"] },
+      owned: ["淡蓝牛津纺衬衫", "黑色高腰烟管裤", "黑色玛丽珍平底鞋"],
+      buy: ["奶油色短款开衫"],
+      tags: ["smart", "layer", "commute", "dry"], image: "assets/img/looks/fa05.jpg?v=20261031a",
+      blurb: "通勤干净，开衫应对早晚温差。"
     },
 
     {
