@@ -9,7 +9,7 @@ window.WARDROBE_CONFIG = {
     timezone: "Asia/Shanghai"
   },
   /* 今日专属五选：date 为 Asia/Shanghai YYYY-MM-DD 时，selectToday 优先按 ids 顺序返回 */
-  today: { date: "2026-11-03", ids: ["fa01", "fa02", "fa03", "fa04", "fa05"] },
+  today: { date: "2026-11-04", ids: ["fa01", "fa02", "fa03", "fa04", "fa05"] },
   /* 单品名 → 购买链接（暂用京东搜索；淘宝云端常被拦）。有精确商品页后可换成 item 链接。 */
   shop: {
     "驼色素色圆领针织": "https://search.jd.com/Search?keyword=%E9%A9%BC%E8%89%B2%E7%B4%A0%E8%89%B2%E5%9C%86%E9%A2%86%E9%92%88%E7%BB%87%20%E5%A5%B3&enc=utf-8",
@@ -154,6 +154,25 @@ window.WARDROBE_CONFIG = {
     "燕麦色细高领针织": "https://search.jd.com/Search?keyword=%E7%87%95%E9%BA%A6%E8%89%B2%E7%BB%86%E9%AB%98%E9%A2%86%E9%92%88%E7%BB%87%20%E5%A5%B3&enc=utf-8",
     "灰驼格纹呢半裙": "https://search.jd.com/Search?keyword=%E7%81%B0%E9%A9%BC%E6%A0%BC%E7%BA%B9%E5%91%A2%E5%8D%8A%E8%A3%99%20%E5%A5%B3&enc=utf-8",
     "深驼中长羊毛大衣": "https://search.jd.com/Search?keyword=%E6%B7%B1%E9%A9%BC%E4%B8%AD%E9%95%BF%E7%BE%8A%E6%AF%9B%E5%A4%A7%E8%A1%A3%20%E5%A5%B3&enc=utf-8",
+    "奶油色细高领针织": "https://search.jd.com/Search?keyword=%E5%A5%B6%E6%B2%B9%E8%89%B2%E7%BB%86%E9%AB%98%E9%A2%86%E9%92%88%E7%BB%87%20%E5%A5%B3&enc=utf-8",
+    "深灰直筒西裤": "https://search.jd.com/Search?keyword=%E6%B7%B1%E7%81%B0%E7%9B%B4%E7%AD%92%E8%A5%BF%E8%A3%A4%20%E5%A5%B3&enc=utf-8",
+    "黑色防水短靴": "https://search.jd.com/Search?keyword=%E9%BB%91%E8%89%B2%E9%98%B2%E6%B0%B4%E7%9F%AD%E9%9D%B4%20%E5%A5%B3&enc=utf-8",
+    "雾蓝防泼水短风衣": "https://search.jd.com/Search?keyword=%E9%9B%BE%E8%93%9D%E9%98%B2%E6%B3%BC%E6%B0%B4%E7%9F%AD%E9%A3%8E%E8%A1%A3%20%E5%A5%B3&enc=utf-8",
+    "铁锈红圆领细针织": "https://search.jd.com/Search?keyword=%E9%93%81%E9%94%88%E7%BA%A2%E5%9C%86%E9%A2%86%E7%BB%86%E9%92%88%E7%BB%87%20%E5%A5%B3&enc=utf-8",
+    "石色防泼水直筒裤": "https://search.jd.com/Search?keyword=%E7%9F%B3%E8%89%B2%E9%98%B2%E6%B3%BC%E6%B0%B4%E7%9B%B4%E7%AD%92%E8%A3%A4%20%E5%A5%B3&enc=utf-8",
+    "深棕切尔西靴": "https://search.jd.com/Search?keyword=%E6%B7%B1%E6%A3%95%E5%88%87%E5%B0%94%E8%A5%BF%E9%9D%B4%20%E5%A5%B3&enc=utf-8",
+    "炭灰绗缝薄棉服": "https://search.jd.com/Search?keyword=%E7%82%AD%E7%81%B0%E7%BB%97%E7%BC%9D%E8%96%84%E6%A3%89%E6%9C%8D%20%E5%A5%B3&enc=utf-8",
+    "鼠尾草绿半高领针织": "https://search.jd.com/Search?keyword=%E9%BC%A0%E5%B0%BE%E8%8D%89%E7%BB%BF%E5%8D%8A%E9%AB%98%E9%A2%86%E9%92%88%E7%BB%87%20%E5%A5%B3&enc=utf-8",
+    "米白直筒牛仔裤": "https://search.jd.com/Search?keyword=%E7%B1%B3%E7%99%BD%E7%9B%B4%E7%AD%92%E7%89%9B%E4%BB%94%E8%A3%A4%20%E5%A5%B3&enc=utf-8",
+    "棕色防水踝靴": "https://search.jd.com/Search?keyword=%E6%A3%95%E8%89%B2%E9%98%B2%E6%B0%B4%E8%B8%9D%E9%9D%B4%20%E5%A5%B3&enc=utf-8",
+    "卡其中长风雨衣": "https://search.jd.com/Search?keyword=%E5%8D%A1%E5%85%B6%E4%B8%AD%E9%95%BF%E9%A3%8E%E9%9B%A8%E8%A1%A3%20%E5%A5%B3&enc=utf-8",
+    "米白圆领薄针织": "https://search.jd.com/Search?keyword=%E7%B1%B3%E7%99%BD%E5%9C%86%E9%A2%86%E8%96%84%E9%92%88%E7%BB%87%20%E5%A5%B3&enc=utf-8",
+    "酒红灯芯绒A字中裙": "https://search.jd.com/Search?keyword=%E9%85%92%E7%BA%A2%E7%81%AF%E8%8A%AF%E7%BB%92A%E5%AD%97%E4%B8%AD%E8%A3%99%20%E5%A5%B3&enc=utf-8",
+    "黑色呢料中长外套": "https://search.jd.com/Search?keyword=%E9%BB%91%E8%89%B2%E5%91%A2%E6%96%99%E4%B8%AD%E9%95%BF%E5%A4%96%E5%A5%97%20%E5%A5%B3&enc=utf-8",
+    "麻灰色亨利领长袖针织": "https://search.jd.com/Search?keyword=%E9%BA%BB%E7%81%B0%E8%89%B2%E4%BA%A8%E5%88%A9%E9%A2%86%E9%95%BF%E8%A2%96%E9%92%88%E7%BB%87%20%E5%A5%B3&enc=utf-8",
+    "靛蓝工装阔腿裤": "https://search.jd.com/Search?keyword=%E9%9D%9B%E8%93%9D%E5%B7%A5%E8%A3%85%E9%98%94%E8%85%BF%E8%A3%A4%20%E5%A5%B3&enc=utf-8",
+    "深棕防水短靴": "https://search.jd.com/Search?keyword=%E6%B7%B1%E6%A3%95%E9%98%B2%E6%B0%B4%E7%9F%AD%E9%9D%B4%20%E5%A5%B3&enc=utf-8",
+    "橄榄绿防泼水派克": "https://search.jd.com/Search?keyword=%E6%A9%84%E6%A6%84%E7%BB%BF%E9%98%B2%E6%B3%BC%E6%B0%B4%E6%B4%BE%E5%85%8B%20%E5%A5%B3&enc=utf-8",
   },
   /* 试穿图：主体+衣服的合成图放进 assets/img/looks/，image 填相对路径；有图则今日大图展示 */
   looks: [
@@ -216,44 +235,44 @@ window.WARDROBE_CONFIG = {
     },
     /* —— 秋 Fall ×7 —— */
     {
-      id: "fa01", season: "fall", name: "豆沙粉针织与烟灰阔腿",
-      pieces: { top: "豆沙粉圆领细针织", bottom: "烟灰高腰阔腿裤", shoes: "米色短靴", extras: ["浅灰羊毛短外套"] },
-      owned: ["豆沙粉圆领细针织", "烟灰高腰阔腿裤", "米色短靴"],
-      buy: ["浅灰羊毛短外套"],
-      tags: ["layer", "mid", "dry", "jacket"], image: "assets/img/looks/fa01.jpg?v=20261103a",
-      blurb: "阴天十五度左右，短外套早出晚归，午间可脱。"
+      id: "fa01", season: "fall", name: "雾蓝防水风衣与奶油高领",
+      pieces: { top: "奶油色细高领针织", bottom: "深灰直筒西裤", shoes: "黑色防水短靴", extras: ["雾蓝防泼水短风衣"] },
+      owned: ["奶油色细高领针织", "深灰直筒西裤", "黑色防水短靴"],
+      buy: ["雾蓝防泼水短风衣"],
+      tags: ["rain", "layer", "commute", "jacket", "mid"], image: "assets/img/looks/fa01.jpg?v=20261104a",
+      blurb: "毛毛雨通勤，短风衣挡雨，高领贴身不闷。"
     },
     {
-      id: "fa02", season: "fall", name: "奶油衬衫与墨绿灯芯绒裙",
-      pieces: { top: "奶油尖领衬衫", bottom: "墨绿灯芯绒A字中裙", shoes: "棕色乐福鞋", extras: ["驼色短风衣"] },
-      owned: ["奶油尖领衬衫", "墨绿灯芯绒A字中裙", "棕色乐福鞋"],
-      buy: ["驼色短风衣"],
-      tags: ["layer", "smart", "dry"], image: "assets/img/looks/fa02.jpg?v=20261103a",
-      blurb: "轻正式叠穿，短风衣应付微凉与薄云。"
+      id: "fa02", season: "fall", name: "铁锈红针织与炭灰绗缝棉服",
+      pieces: { top: "铁锈红圆领细针织", bottom: "石色防泼水直筒裤", shoes: "深棕切尔西靴", extras: ["炭灰绗缝薄棉服"] },
+      owned: ["铁锈红圆领细针织", "石色防泼水直筒裤", "深棕切尔西靴"],
+      buy: ["炭灰绗缝薄棉服"],
+      tags: ["rain", "layer", "weekend", "jacket", "mid"], image: "assets/img/looks/fa02.jpg?v=20261104a",
+      blurb: "周末落雨，绗缝棉服轻便挡湿凉。"
     },
     {
-      id: "fa03", season: "fall", name: "薰衣草紫半高领与直筒牛仔",
-      pieces: { top: "薰衣草紫半高领针织", bottom: "中蓝直筒牛仔裤", shoes: "白色厚底小白鞋", extras: ["米白绗缝薄马甲"] },
-      owned: ["薰衣草紫半高领针织", "中蓝直筒牛仔裤", "白色厚底小白鞋"],
-      buy: ["米白绗缝薄马甲"],
-      tags: ["layer", "casual", "weekend", "dry"], image: "assets/img/looks/fa03.jpg?v=20261103a",
-      blurb: "周末街逛，薄马甲挡风不显厚。"
+      id: "fa03", season: "fall", name: "鼠尾草半高领与卡其风雨衣",
+      pieces: { top: "鼠尾草绿半高领针织", bottom: "米白直筒牛仔裤", shoes: "棕色防水踝靴", extras: ["卡其中长风雨衣"] },
+      owned: ["鼠尾草绿半高领针织", "米白直筒牛仔裤", "棕色防水踝靴"],
+      buy: ["卡其中长风雨衣"],
+      tags: ["rain", "smart", "layer", "jacket", "mid"], image: "assets/img/looks/fa03.jpg?v=20261104a",
+      blurb: "中长风雨衣罩住腿部溅湿，半高领稳住十六度体感。"
     },
     {
-      id: "fa04", season: "fall", name: "焦糖亨利衫与炭灰烟管裤",
-      pieces: { top: "焦糖色亨利领长袖针织", bottom: "炭灰高腰烟管裤", shoes: "黑色踝靴", extras: ["黑色短款皮夹克"] },
-      owned: ["焦糖色亨利领长袖针织", "炭灰高腰烟管裤", "黑色踝靴"],
-      buy: ["黑色短款皮夹克"],
-      tags: ["layer", "weekend", "dry", "jacket"], image: "assets/img/looks/fa04.jpg?v=20261103a",
-      blurb: "微凉阴天的利落周末造型。"
+      id: "fa04", season: "fall", name: "酒红灯芯绒裙与黑呢外套",
+      pieces: { top: "米白圆领薄针织", bottom: "酒红灯芯绒A字中裙", shoes: "黑色短靴", extras: ["黑色呢料中长外套", "黑色连裤袜"] },
+      owned: ["米白圆领薄针织", "酒红灯芯绒A字中裙", "黑色短靴", "黑色连裤袜"],
+      buy: ["黑色呢料中长外套"],
+      tags: ["rain", "smart", "layer", "jacket", "commute"], image: "assets/img/looks/fa04.jpg?v=20261104a",
+      blurb: "裙装加呢外套与连裤袜，细雨天仍能利落出门。"
     },
     {
-      id: "fa05", season: "fall", name: "燕麦高领与灰驼格纹半裙",
-      pieces: { top: "燕麦色细高领针织", bottom: "灰驼格纹呢半裙", shoes: "焦糖色乐福鞋", extras: ["深驼中长羊毛大衣"] },
-      owned: ["燕麦色细高领针织", "灰驼格纹呢半裙", "焦糖色乐福鞋"],
-      buy: ["深驼中长羊毛大衣"],
-      tags: ["smart", "layer", "commute", "dry", "jacket"], image: "assets/img/looks/fa05.jpg?v=20261103a",
-      blurb: "通勤干净，大衣应对晨凉近十三度。"
+      id: "fa05", season: "fall", name: "麻灰亨利衫与橄榄派克",
+      pieces: { top: "麻灰色亨利领长袖针织", bottom: "靛蓝工装阔腿裤", shoes: "深棕防水短靴", extras: ["橄榄绿防泼水派克"] },
+      owned: ["麻灰色亨利领长袖针织", "靛蓝工装阔腿裤", "深棕防水短靴"],
+      buy: ["橄榄绿防泼水派克"],
+      tags: ["rain", "casual", "weekend", "jacket", "layer"], image: "assets/img/looks/fa05.jpg?v=20261104a",
+      blurb: "派克帽檐挡雨，工装裤好走湿路。"
     },
 
     {
